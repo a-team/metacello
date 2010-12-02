@@ -12,7 +12,10 @@ end
 enable :sessions
 
 helpers do
-  def current_user;   find_user(session['username']) || {};  end
+  def current_user;      find_user(session['username']) || {};  end
+  def current_user?;     !!find_user(session['username']);      end
+  def current_user=name; session['username'] = name;            end
+
   def save(db, hash); DB[db].insert(hash);                  end
   def find(db, name); DB[db].find_one('name' => name);      end
 
@@ -32,7 +35,7 @@ helpers do
 end
 
 get '/' do
-  if current_user
+  if current_user?
     redirect '/#{current_user.name}'
   else
     haml :dashboard
@@ -40,14 +43,14 @@ get '/' do
 end
 
 get '/logout/?' do
-  session.delete('username')
+  current_user = nil
   redirect "/"
 end
 
 post '/(login|signup)/?' do
   if user = find_user(params["user"]["name"])
     if BCrypt::Password.new(user['password_hash']) == params["user"]["password"]
-      session["username"] = params["user"]["name"]
+      self.current_user = params["user"]["name"]
       redirect "/"
     end
   else
@@ -56,7 +59,7 @@ post '/(login|signup)/?' do
       'password_hash' => BCrypt::Password.create(params["user"]["password"]).to_s
     }
     save_user(user)
-    session["username"] = user['name']
+    self.current_user = user['name']
     redirect "/"
   end
   redirect "/"
