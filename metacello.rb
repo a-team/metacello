@@ -20,8 +20,14 @@ helpers do
   def current_user?;     !!find_user(session['username']);      end
   def current_user=name; session['username'] = name;            end
 
-  def save(db, hash); DB[db].insert(hash);                  end
   def find(db, name); DB[db].find_one('name' => name);      end
+  def save(db, hash)
+    if document = find(db, name)
+      DB[db].update({"name" => name}, document.merge(hash))
+    else
+      DB[db].insert(hash)
+    end
+  end
 
   %w[project user].each do |tbl|
     define_method(:"find_#{tbl}") {|name| find("#{tbl}s", name) }
@@ -34,8 +40,7 @@ helpers do
 
   def gravatar(mail)
     mail ||= "jondoe@example.com"
-    "<img src='http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=80&d=wavatar"'
-      alt='' width='#{size}' height='#{size}' class='gravatar'>"
+    "http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=40&d=wavatar"
   end
 end
 

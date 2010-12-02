@@ -16,14 +16,14 @@
   %body
     #info-header
       -if flash.has?(:error)
-        .error= flash[:err]
+        .error= flash[:error]
       -if flash.has?(:notice)
         .notice= flash[:notice]
     #header
       .logo
       .avatar
         -if current_user?
-          =gravatar(current_user['mail'])
+          %img{:href => "http://www.gravatar.com", :src => gravatar(current_user['mail'])}
           %a{:href => "#", :onclick => "toggle_form('account');"} Account
           %a{:href => "/logout"} Logout
           .account_form= haml :"forms/account", :locals => {:user => user}, :layout => false
