@@ -1,3 +1,3 @@
-function show_signup() {
-    $('.avatar').children().show();
+function toggle_signup() {
+    $('.avatar').children("form").toggle();
 }
