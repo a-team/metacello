@@ -22,13 +22,7 @@
           %a{:href => "/logout"} Logout
         -else
           %a{:href => "#", :onclick => "toggle_signup();"} Login/Signup
-          %form{:name => "login", :action => "/login", :method => "post"}
-            %label{:for => "user[name]"} Username:
-            %input{:type => "text", :name => "user[name]"}
-            %br
-            %label{:for => "user[password]"} Password:
-            %input{:type => "password", :name => "user[password]"}
-            %input{:type => "submit", :style => "display:none"}
+          =haml :"forms/login"
       .search
         %form
           %label{:for => "search"} Search:

@@ -81,18 +81,14 @@ end
 delete '/:name/?' do |name|
 end
 
-get "/javascript/:name" do |name|
-  content_type "text/javascript"
-  send_file("views/javascript/#{name}")
-end
-
 get "/stylesheets/screen.css" do
-  content_type 'text/css'
-
-  # Use views/stylesheets & blueprint's stylesheet dirs in the Sass load path
   sass :"stylesheets/screen", { :sass => { :load_paths => (
     [ File.join(File.dirname(__FILE__), 'views', 'stylesheets') ] +
     Compass::Frameworks::ALL.map { |f| f.stylesheets_directory })
   } }
+end
+
+get "/javascript/metacello.js" do
+  coffee :"javascript/metacello.js"
 end
 
