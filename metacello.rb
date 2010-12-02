@@ -38,7 +38,7 @@ get '/' do
   if current_user?
     redirect '/#{current_user.name}'
   else
-    haml :dashboard
+    haml :dashboard, :locals => {:user => nil}
   end
 end
 
@@ -66,6 +66,7 @@ post '/(login|signup)/?' do
 end
 
 get '/dashboard/:user/?' do |user|
+  haml :dashboard, :locals => {:user => find_user(user)}
 end
 
 delete '/dashboard/:user/?' do |user|
@@ -78,6 +79,11 @@ post '/:name/?' do |name|
 end
 
 delete '/:name/?' do |name|
+end
+
+get "/javascript/:name" do |name|
+  content_type "text/javascript"
+  send_file("views/javascript/#{name}")
 end
 
 get "/stylesheets/screen.css" do
