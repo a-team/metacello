@@ -1,4 +1,5 @@
 source :rubygems
+gem "rack-flash"
 gem "sinatra"
 gem "mongo"
 gem "bson_ext", :platforms => [:ruby]

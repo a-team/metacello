@@ -3,6 +3,9 @@ require 'haml'
 require 'compass'
 require 'mongo'
 require 'bcrypt'
+require 'json'
+require 'rack-flash'
+require 'digest/md5'
 
 DB = Mongo::Connection.new(ENV['DATABASE_URL'] || 'localhost').db('metacello')
 if ENV['DATABASE_USER'] && ENV['DATABASE_PASSWORD']
@@ -10,6 +13,7 @@ if ENV['DATABASE_USER'] && ENV['DATABASE_PASSWORD']
 end
 
 enable :sessions
+use Rack::Flash
 
 helpers do
   def current_user;      find_user(session['username']) || {};  end
@@ -29,39 +33,75 @@ helpers do
   end
 
   def gravatar(mail)
-    "<img src='http://www.gravatar.com/avatar/#{MD5::md5(mail)}?s=80&d=wavatar"'
+    mail ||= "jondoe@example.com"
+    "<img src='http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=80&d=wavatar"'
       alt='' width='#{size}' height='#{size}' class='gravatar'>"
   end
 end
 
 get '/' do
   if current_user?
-    redirect '/#{current_user.name}'
+    redirect "/dashboard/#{current_user['name']}"
   else
     haml :dashboard, :locals => {:user => nil}
   end
 end
 
 get '/logout/?' do
-  current_user = nil
+  self.current_user = nil
   redirect "/"
 end
 
-post '/(login|signup)/?' do
+post '/login/?' do
   if user = find_user(params["user"]["name"])
     if BCrypt::Password.new(user['password_hash']) == params["user"]["password"]
       self.current_user = params["user"]["name"]
-      redirect "/"
+      flash[:notice] = "You have been logged in."
     end
   else
-    user = {
+    session["new_user"] = {
       'name' => params["user"]["name"],
       'password_hash' => BCrypt::Password.create(params["user"]["password"]).to_s
-    }
-    save_user(user)
-    self.current_user = user['name']
-    redirect "/"
+    }.to_json
+    flash[:notice] = haml(:"forms/signup", :layout => false,
+      :locals => {:username => params["user"]["name"]})
   end
+  flash[:error] = "Something went wrong."
+  p "GOT HERE"
+  redirect "/"
+end
+
+get "/signup/?" do
+  if session["new_user"]
+    user = JSON.parse(session["new_user"])
+    unless find_user(user["name"])
+      save_user(user)
+      self.current_user = user["name"]
+      session.delete("new_user")
+      flash[:notice] = "Signup successful"
+    else
+      flash[:error] = "Signup failed. A user with this name exists!"
+    end
+  end
+  flash[:error] = "Signup failed. No username/password supplied!"
+  redirect "/"
+end
+
+post "/account/?" do
+  if current_user?
+    user = current_user
+    if BCrypt::Password.new(user['password_hash']) == params["user"]["password"]
+      user["mail"] = params["user"]["mail"]
+      user["homepage"] = params["user"]["homepage"]
+      if params["user"]["new_password"] and params["user"]["new_password"] == params["user"]["new_password_verification"]
+        user["password_hash"] = BCrypt::Password.create(params["user"]["password"]).to_s
+      end
+      save_user(user)
+      flash[:notice] = "Account update successful"
+    end
+    flash[:error] = "The password is wrong!"
+  end
+  flash[:error] = "An error has occured. Please try logging in again."
   redirect "/"
 end
 
@@ -81,14 +121,14 @@ end
 delete '/:name/?' do |name|
 end
 
-get "/stylesheets/screen.css" do
-  sass :"stylesheets/screen", { :sass => { :load_paths => (
+get "/stylesheets/:name.css" do |name|
+  sass :"stylesheets/#{name}", { :sass => { :load_paths => (
     [ File.join(File.dirname(__FILE__), 'views', 'stylesheets') ] +
     Compass::Frameworks::ALL.map { |f| f.stylesheets_directory })
   } }
 end
 
-get "/javascript/metacello.js" do
-  coffee :"javascript/metacello.js"
+get "/javascript/:name.js" do |name|
+  coffee :"javascript/#{name}"
 end
 

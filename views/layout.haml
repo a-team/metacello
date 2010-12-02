@@ -14,15 +14,22 @@
           onmissing: function() { window.location = "http://www.google.com/chromeframe/eula.html" }
         });
   %body
+    #info-header
+      -if flash.has?(:error)
+        .error= flash[:err]
+      -if flash.has?(:notice)
+        .notice= flash[:notice]
     #header
       .logo
       .avatar
-        -if current_user['mail']
+        -if current_user?
           =gravatar(current_user['mail'])
+          %a{:href => "#", :onclick => "toggle_form('account');"} Account
           %a{:href => "/logout"} Logout
+          .account_form= haml :"forms/account", :locals => {:user => user}, :layout => false
         -else
-          %a{:href => "#", :onclick => "toggle_signup();"} Login/Signup
-          =haml :"forms/login"
+          %a{:href => "#", :onclick => "toggle_form('login');"} Login/Signup
+          .login_form= haml :"forms/login", :layout => false
       .search
         %form
           %label{:for => "search"} Search:
