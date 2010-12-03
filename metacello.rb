@@ -6,6 +6,7 @@ require 'bcrypt'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
+require 'coffee-script'
 
 DB = Mongo::Connection.new(ENV['DATABASE_URL'] || 'localhost').db('metacello')
 if ENV['DATABASE_USER'] && ENV['DATABASE_PASSWORD']
