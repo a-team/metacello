@@ -57,20 +57,19 @@ end
 
 post '/login/?' do
   if user = find_user(params["user"]["name"])
-    if BCrypt::Password.new(user['password_hash']) == params["user"]["password"]
+    if Crypt3.check(params["user"]["password"], user['password_hash'], :sha512)
       self.current_user = params["user"]["name"]
       flash[:notice] = "You have been logged in."
     end
   else
     session["new_user"] = {
       'name' => params["user"]["name"],
-      'password_hash' => BCrypt::Password.create(params["user"]["password"]).to_s
+      'password_hash' => Crypt3.create(params["user"]["password"], :sha512)
     }.to_json
     flash[:notice] = haml(:"forms/signup", :layout => false,
       :locals => {:username => params["user"]["name"]})
   end
   flash[:error] = "Something went wrong."
-  p "GOT HERE"
   redirect "/"
 end
 
@@ -93,11 +92,11 @@ end
 post "/account/?" do
   if current_user?
     user = current_user
-    if BCrypt::Password.new(user['password_hash']) == params["user"]["password"]
+    if Crypt3.check(params["user"]["password"], user['password_hash'], :sha512)
       user["mail"] = params["user"]["mail"]
       user["homepage"] = params["user"]["homepage"]
       if params["user"]["new_password"] and params["user"]["new_password"] == params["user"]["new_password_verification"]
-        user["password_hash"] = BCrypt::Password.create(params["user"]["password"]).to_s
+        user["password_hash"] = Crypt3.create(params["user"]["password"], :sha512)
       end
       save_user(user)
       flash[:notice] = "Account update successful"
