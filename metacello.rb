@@ -1,16 +1,12 @@
 require 'sinatra'
 require 'haml'
 require 'compass'
-require 'mongo'
-require 'bcrypt'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
+require 'crypt3'
 
-DB = Mongo::Connection.new(ENV['DATABASE_URL'] || 'localhost').db('metacello')
-if ENV['DATABASE_USER'] && ENV['DATABASE_PASSWORD']
-  auth = DB.authenticate(ENV['DATABASE_USER'], ENV['DATABASE_PASSWORD'])
-end
+DB = Maglev::PERSISTENT_ROOT
 
 enable :sessions
 use Rack::Flash
@@ -20,12 +16,14 @@ helpers do
   def current_user?;     !!find_user(session['username']);      end
   def current_user=name; session['username'] = name;            end
 
-  def find(db, name); DB[db].find_one('name' => name);      end
+  def find(db, name)
+    Maglev.abort_transaction
+    DB[db][name]
+  end
+
   def save(db, hash)
-    if document = find(db, name)
-      DB[db].update({"name" => name}, document.merge(hash))
-    else
-      DB[db].insert(hash)
+    Maglev.transaction do
+      DB[db][name] = DB[db][name].merge(hash)
     end
   end
 
