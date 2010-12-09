@@ -5,7 +5,7 @@ require 'compass'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
-require 'lib/maglev_db'
+require 'lib/db'
 require 'lib/project'
 require 'lib/user'
 

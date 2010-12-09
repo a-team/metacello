@@ -1,14 +1,15 @@
-class MaglevDB
-  DB = Maglev::PERSISTENT_ROOT
+require 'pstore'
+
+class PstoreDB
+  DB = PStore.new("persistent_root")
 
   def find(db, token)
-    Maglev.abort_transaction
-    DB[db] and DB[db][token]
+    DB.transaction(true) { DB[db] and DB[db][token] }
   end
 
   # FIXME: What happens on transaction abort?
   def save(db, object)
-    Maglev.transaction { DB[db][object.token] = object }
+    DB.transaction { DB[db][object.token] = object }
     object
   end
 
@@ -23,5 +24,4 @@ class MaglevDB
   end
 end
 
-Object::DB = MaglevDB.new
-
+Object::DB = PstoreDB.new
