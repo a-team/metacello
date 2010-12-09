@@ -23,7 +23,7 @@
       .logo
       .avatar
         -if current_user?
-          %img{:href => "http://www.gravatar.com", :src => gravatar(current_user['mail'])}
+          %img{:href => "http://www.gravatar.com", :src => gravatar(current_user.mail)}
           %a{:href => "#", :onclick => "toggle_form('account');"} Account
           %a{:href => "/logout"} Logout
           .account_form= haml :"forms/account", :locals => {:user => user}, :layout => false
