@@ -1,10 +1,14 @@
 source :rubygems
 gem "rack-flash"
 gem "sinatra"
-gem "mongo"
-gem "bson_ext", :platforms => [:ruby]
 gem "haml"
 gem "compass"
-gem "bcrypt-ruby"
 gem "coffee-script"
-gem "json"
+gem "crypt3"
+if RUBY_PLATFORM =~ /ruby/
+  gem "json"
+# gem "bcrypt-ruby"
+else
+  gem "json_pure"
+# gem "bcrypt-ruby", :git => "https://github.com/samuelkadolph/bcrypt-ruby.git"
+end
