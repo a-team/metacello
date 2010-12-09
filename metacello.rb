@@ -12,9 +12,11 @@ enable :sessions
 use Rack::Flash
 
 helpers do
-  def current_user;      DB.find_user(session['token']) || {};  end
-  def current_user?;     !!DB.find_user(session['token']);      end
-  def current_user=name; session[DB.find_user(name).token] = name;            end
+  def current_user;      DB.find_user(session['token'])           end
+  def current_user?;     !!session['token']                       end
+  def current_user=name
+    session['token'] = DB.find_user(name).token
+  end
 
   def gravatar(mail)
     mail ||= "jondoe@example.com"
