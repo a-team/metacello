@@ -1,0 +1,17 @@
+%form{:name => "account", :action => "/account", :method => "post"}
+  %label{:for => "user[mail]"} E-Mail:
+  %input{:type => "text", :name => "user[mail]", :value => "#{user["mail"]}"}
+  %br
+  %label{:for => "user[homepage]"} Homepage:
+  %input{:type => "text", :name => "user[homepage]", :value => "#{user["homepage"]}"}
+  %br
+  %label{:for => "user[new_password]"} New password:
+  %input{:type => "text", :name => "user[new_password]"}
+  %label{:for => "user[new_password_verification]"} New password (verfication):
+  %input{:type => "text", :name => "user[new_password_verification]"}
+  %br
+  %br
+  %label{:for => "user[password]"} Current password:
+  %input{:type => "password", :name => "user[password]"}
+  %input{:type => "hidden", :name => "user[name]", :value => user['name']}
+  %input{:type => "submit", :style => "display:none"}
