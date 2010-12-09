@@ -12,10 +12,10 @@ enable :sessions
 use Rack::Flash
 
 helpers do
-  def current_user;      DB.find_user(session['token'])           end
-  def current_user?;     !!session['token']                       end
-  def current_user=name
-    session['token'] = DB.find_user(name).token
+  def current_user;      DB.find_user(session['token']) end
+  def current_user?;     !!session['token']             end
+  def current_user=user
+    session['token'] = (user ? user.token : nil)
   end
 
   def gravatar(mail)
@@ -39,14 +39,14 @@ end
 
 post '/login/?' do
   if user = DB.find_user(params["user"]["name"])
-    if Crypt3.check(params["user"]["password"], user.password_hash, :sha512)
-      self.current_user = params["user"]["name"]
+    if user.authenticate(params["user"]["password"])
+      self.current_user = user
       flash[:notice] = "You have been logged in."
     end
   else
     session["new_user"] = {
       'name' => params["user"]["name"],
-      'password_hash' => Crypt3.create(params["user"]["password"], :sha512)
+      'password' => params["user"]["password"]
     }.to_json
     flash[:notice] = haml(:"forms/signup", :layout => false,
       :locals => {:username => params["user"]["name"]})
@@ -59,8 +59,9 @@ get "/signup/?" do
   if session["new_user"]
     user = JSON.parse(session["new_user"])
     unless DB.find_user(user["name"])
+      user = User.new(session["user"])
       DB.save_user(user)
-      self.current_user = user["name"]
+      self.current_user = user
       session.delete("new_user")
       flash[:notice] = "Signup successful"
     else
@@ -72,14 +73,12 @@ get "/signup/?" do
 end
 
 post "/account/?" do
-  if current_user?
-    user = current_user
-    if Crypt3.check(params["user"]["password"], user.password_hash, :sha512)
-      user["mail"] = params["user"]["mail"]
-      user["homepage"] = params["user"]["homepage"]
+  if user = current_user
+    if user.authenticate(params["user"]["password"])
       if params["user"]["new_password"] and params["user"]["new_password"] == params["user"]["new_password_verification"]
-        user["password_hash"] = Crypt3.create(params["user"]["password"], :sha512)
+        params["user"]["password"] = params["user"]["new_password"]
       end
+      user.update_from(params["user"])
       DB.save_user(user)
       flash[:notice] = "Account update successful"
     end

@@ -1,13 +1,15 @@
 class MaglevDB
   DB = Maglev::PERSISTENT_ROOT
 
-  def find(db, name)
+  def find(db, token)
     Maglev.abort_transaction
-    DB[db] and DB[db][name]
+    DB[db] and DB[db][token]
   end
 
+  # FIXME: What happens on transaction abort?
   def save(db, object)
-    Maglev.transaction { DB[db][name] = object }
+    Maglev.transaction { DB[db][object.token] = object }
+    object
   end
 
   def method_missing(method, *args, &block)
