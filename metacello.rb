@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'coffee-script'
 require 'compass'
 require 'json'
 require 'rack-flash'
