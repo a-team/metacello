@@ -5,8 +5,9 @@ require 'compass'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
-require 'crypt3'
 require 'lib/maglev_db'
+require 'lib/project'
+require 'lib/user'
 
 enable :sessions
 use Rack::Flash

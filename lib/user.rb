@@ -1,3 +1,5 @@
+require 'crypt3'
+
 class User
   attr_accessor :name, :mail, :url, :password_hash
   attr_reader :token
