@@ -24,4 +24,3 @@ class PstoreDB
   end
 end
 
-Object::DB = PstoreDB.new

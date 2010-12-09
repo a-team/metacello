@@ -23,5 +23,3 @@ class MaglevDB
   end
 end
 
-Object::DB = MaglevDB.new
-
