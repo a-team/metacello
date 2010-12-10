@@ -1,0 +1,19 @@
+- if project
+  .screenshot
+    - if project.screenshot
+      %img{:src => h(project.screenshot)}
+    - else
+      %img{:src => "/public/missing-image.png"}
+  .description= markdown(h(project.description))
+  .last_updates
+    .date= h(project.updated_on.to_s)
+    .team= h(project.team[0...3])
+  .urls
+    - for url in project.urls
+      %a{:href => url}= h(url)
+  .doIt= h(project.doIt)
+  .license= h(project.license)
+- else
+  There is no project with that name. Care to
+  %a{:href => "/register/#{name}"} create one
+  ?

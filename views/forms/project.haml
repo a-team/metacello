@@ -1,0 +1,26 @@
+%form{:name => "project", :action => "/#{project.name}", :method => "post"}
+  %label{:for => "project[urls]"} Relevant URLs:
+  %input{:type => "textbox", :name => "project[urls]", :value => "#{h(project.urls.join("\n"))}"}
+  %br
+  %label{:for => "project[screenshot]"} Online Screenshot:
+  %input{:type => "text", :name => "project[screenshot]", :value => "#{h(project.screenshot)}"}
+  %br
+  %label{:for => "project[description]"} Description:
+  %input{:type => "textbox", :name => "project[description]", :value => "#{h(project.description)}"}
+  %br
+  %label{:for => "project[doIt]"} Description:
+  %input{:type => "textbox", :name => "project[doIt]", :value => "#{h(project.doIt)}"}
+  %br
+  Compatible Smalltalk Systems
+  - project.compatibility.keys.each_with_index do |system, idx|
+    %label{:for => "project[compatibility][#{idx}][system]"} Smalltalk:
+    %input{:type => "textbox", :name => "project[compatibility][#{idx}][system]", :value => "#{h(system)}"}
+    %label{:for => "project[compatibility][#{idx}][versions]"} Versions:
+    %input{:type => "textbox", :name => "project[compatibility][#{idx}][versions]", :value => "#{h(project.compatibility[system])}"}
+    %br
+  %a{:href => "#", :class => "add-system-link"} Add another ...
+  %br
+  %label{:for => "project[license]"} Description:
+  %input{:type => "textbox", :name => "project[license]", :value => "#{h(project.license)}"}
+  %br
+  %input{:type => "submit", :style => "display:none"}

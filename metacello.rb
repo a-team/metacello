@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'markdown'
 require 'coffee-script'
 require 'compass'
 require 'json'
@@ -94,15 +95,41 @@ get '/dashboard/:user/?' do |user|
 end
 
 delete '/dashboard/:user/?' do |user|
+  # Delete a user
+end
+
+get '/:name.st/?' do |name|
+  if project = DB.find_project(name)
+    return project.doIt
+  else
+    redirect "/404"
+  end
 end
 
 get '/:name/?' do |name|
+  haml :project, :locals => { :user => DB.find_user(current_user),
+    :project => DB.find_project(name), :name => name }
 end
 
 post '/:name/?' do |name|
+  if project = DB.find_project(name)
+    project.update_from(params["project"])
+    DB.save_user(project)
+    flash[:notice] = "Update successful"
+  else
+    flash[:error] = "Something went wrong while creating/updating the project."
+  end
+  redirect "/#{name}"
 end
 
 delete '/:name/?' do |name|
+  # Delete a project
+end
+
+get '/register/:name' do |name|
+  p = Project.new(name)
+  DB.save_project(p)
+  haml :"forms/project", :locals => { :project => p }
 end
 
 get "/stylesheets/:name.css" do |name|
