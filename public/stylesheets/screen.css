@@ -1,0 +1,28 @@
+#info-header {
+  display: none; }
+
+#header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  background-color: #ff1144; }
+  #header .logo {
+    float: left;
+    width: 120px;
+    background-color: white; }
+  #header .avatar {
+    float: right; }
+    #header .avatar form {
+      display: none; }
+  #header .search {
+    clear: both; }
+
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  background-color: #ccaa22; }
+  #container .general-activity {
+    float: left; }
+  #container .personal-activity {
+    float: right; }

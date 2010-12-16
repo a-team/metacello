@@ -135,15 +135,4 @@ get '/register/:name' do |name|
   haml :"forms/project", :locals => { :project => p }
 end
 
-get "/stylesheets/:name.css" do |name|
-  sass :"stylesheets/#{name}", { :sass => { :load_paths => (
-    [ File.join(File.dirname(__FILE__), 'views', 'stylesheets') ] +
-    Compass::Frameworks::ALL.map { |f| f.stylesheets_directory })
-  } }
-end
-
-get "/javascript/:name.js" do |name|
-  coffee :"javascript/#{name}"
-end
-
 set :run, true
