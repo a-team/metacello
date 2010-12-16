@@ -1,9 +1,9 @@
 %form{:name => "account", :action => "/account", :method => "post"}
   %label{:for => "user[mail]"} E-Mail:
-  %input{:type => "text", :name => "user[mail]", :value => "#{user["mail"]}"}
+  %input{:type => "text", :name => "user[mail]", :value => "#{user.mail}"}
   %br
   %label{:for => "user[homepage]"} Homepage:
-  %input{:type => "text", :name => "user[homepage]", :value => "#{user["homepage"]}"}
+  %input{:type => "text", :name => "user[homepage]", :value => "#{user.homepage}"}
   %br
   %label{:for => "user[new_password]"} New password:
   %input{:type => "text", :name => "user[new_password]"}

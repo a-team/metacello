@@ -26,7 +26,7 @@
           %img{:href => "http://www.gravatar.com", :src => gravatar(current_user.mail)}
           %a{:href => "#", :onclick => "toggle_form('account');"} Account
           %a{:href => "/logout"} Logout
-          .account_form= haml :"forms/account", :locals => {:user => user}, :layout => false
+          .account_form= haml :"forms/account", :locals => {:user => current_user}, :layout => false
         -else
           %a{:href => "#", :onclick => "toggle_form('login');"} Login/Signup
           .login_form= haml :"forms/login", :layout => false
