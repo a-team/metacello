@@ -65,7 +65,7 @@ get "/signup/?" do
   if session["new_user"]
     user = JSON.parse(session["new_user"])
     unless DB.find_user(user["name"])
-      user = User.new(session["user"])
+      user = User.new(user)
       DB.save_user(user)
       self.current_user = user
       session.delete("new_user")
