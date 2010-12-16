@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'haml'
-require 'markdown'
+begin
+  require 'markdown'
+rescue LoadError
+  require 'maruku'
+end
 require 'coffee-script'
 require 'compass'
 require 'json'
