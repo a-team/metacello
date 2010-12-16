@@ -10,9 +10,9 @@ require 'compass'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
-require 'lib/db'
 require 'lib/project'
 require 'lib/user'
+require 'lib/db'
 
 enable :sessions
 use Rack::Flash
