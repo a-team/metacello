@@ -15,7 +15,7 @@ class User
   end
 
   def password=(pw)
-    Crypt3.create(pw, Crypt3Method)
+    Crypt3.crypt(pw, Crypt3Method)
   end
 
   def update_from(hash)
