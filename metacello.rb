@@ -24,7 +24,8 @@ helpers do
     session['token'] = (user ? user.token : nil)
   end
 
-  def gravatar(mail = "jondoe@example.com")
+  def gravatar(mail)
+    mail ||= "jondoe@example.com"
     "http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=40&d=wavatar"
   end
 end
