@@ -1,21 +1,19 @@
-require 'crypt3'
+require 'bcrypt'
 
 class User
   attr_accessor :name, :mail, :url, :password_hash
   attr_reader :token
-
-  Crypt3Method = :sha512
 
   def initialize(hash)
     update_from(hash)
   end
 
   def authenticate(password)
-    Crypt3.check(password, password_hash, Crypt3Method)
+    BCrypt::Password.new(password_hash) == password
   end
 
   def password=(pw)
-    Crypt3.crypt(pw, Crypt3Method)
+    self.password_hash = BCrypt::Password.create(pw).to_s
   end
 
   def update_from(hash)
