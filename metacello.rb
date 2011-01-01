@@ -87,8 +87,10 @@ post "/account/?" do
       user.update_from(params["user"])
       DB.save_user(user)
       flash[:notice] = "Account update successful"
+      redirect "/dashboard/#{user.name}"
     end
     flash[:error] = "The password is wrong!"
+    redirect "/dashboard/#{user.name}"
   end
   flash[:error] = "An error has occured. Please try logging in again."
   redirect "/"
