@@ -1,7 +1,6 @@
 class Project
   attr_accessor :name, :team, :urls, :description, :doIt, :screenshot,
     :updated_on, :license, :compatibility
-  alias :token :name
 
   def initialize(name = "")
     self.name = name
@@ -27,5 +26,9 @@ class Project
 
   def team
     @team.collect(&:name).join(" ")
+  end
+
+  def token
+    @token ||= name.hash
   end
 end
