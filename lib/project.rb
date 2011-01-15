@@ -1,8 +1,10 @@
-class Project
+require 'model'
+
+class Project < Model
   attr_accessor :name, :team, :urls, :description, :doIt, :screenshot,
     :updated_on, :license, :compatibility
 
-  def initialize(name = "")
+  def initialize(name)
     self.name = name
     self.urls = []
     self.team = []
@@ -12,6 +14,7 @@ class Project
           install: ConfigurationOf#{name}.
       ConfigurationOf#{name} project stableVersion load.
     ST
+    save
   end
 
   def update_from(hash)
@@ -22,13 +25,10 @@ class Project
     # The following prepends the current user (who did this update) to the team
     # list - calling uniq will leave the first occurence in the list
     self.team.unshift(current_user).uniq
+    save
   end
 
   def team
     @team.collect(&:name).join(" ")
-  end
-
-  def token
-    @token ||= name.hash
   end
 end

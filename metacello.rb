@@ -1,29 +1,19 @@
+$LOAD_PATH.unshift(File.expand_path("../lib", __FILE__))
 require 'sinatra'
 require 'haml'
-begin
-  require 'markdown'
-rescue LoadError
-  require 'maruku'
-end
+require RUBY_ENGINE == "maglev" ? 'maruku' : 'markdown'
 require 'coffee-script'
 require 'compass'
 require 'json'
 require 'rack-flash'
 require 'digest/md5'
-require 'lib/project'
-require 'lib/user'
-require 'lib/db'
+require 'project'
+require 'user'
 
 enable :sessions
 use Rack::Flash
 
 helpers do
-  def current_user;   DB.find_user(session['token']) end
-  def current_user?;  !!session['token']             end
-  def current_user=user
-    session['token'] = (user ? user.token : nil)
-  end
-
   def gravatar(mail)
     mail ||= "jondoe@example.com"
     "http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=40&d=wavatar"
@@ -31,96 +21,97 @@ helpers do
 end
 
 get '/' do
-  if current_user?
-    redirect "/dashboard/#{current_user.name}"
+  if User.current_user?
+    redirect "/dashboard/#{User.current_user.name}"
   else
     haml :dashboard, :locals => {:user => nil}
   end
 end
 
 get '/logout/?' do
-  self.current_user = nil
+  User.logout
   redirect "/"
 end
 
 post '/login/?' do
-  if user = DB.find_user(params["user"]["name"])
-    if user.authenticate(params["user"]["password"])
-      self.current_user = user
-      flash[:notice] = "You have been logged in."
-    end
+  u = params["user"]
+  if User.login(u["name"], u["password"])
+    flash[:notice] = "You have been logged in."
   else
     session["new_user"] = {
-      'name' => params["user"]["name"],
-      'password' => params["user"]["password"]
+      'name' => u["name"],
+      'password' => u["password"]
     }.to_json
     flash[:notice] = haml(:"forms/signup", :layout => false,
-      :locals => {:username => params["user"]["name"]})
+      :locals => {:username => u["name"]})
   end
-  flash[:error] = "Something went wrong."
   redirect "/"
 end
 
 get "/signup/?" do
-  if session["new_user"]
-    user = JSON.parse(session["new_user"])
-    unless DB.find_user(user["name"])
-      user = User.new(user)
-      DB.save_user(user)
-      self.current_user = user
-      session.delete("new_user")
-      flash[:notice] = "Signup successful"
-    else
+  if u = (params["new_user"] || session["new_user"])
+    u = JSON.parse(u["new_user"])
+    if !(u["name"] && u["password"])
+      flash[:error] = "Signup failed. No username/password supplied!"
+    elsif User.find(u["name"])
       flash[:error] = "Signup failed. A user with this name exists!"
+    else
+      User.new(u)
+      User.login(u["name"], u["password"])
+      session.delete("new_user")
+      flash[:notice] = "Signup successful, you are now logged in."
     end
+  else
+    flash[:error] = "Signup failed. No username/password supplied!"
   end
-  flash[:error] = "Signup failed. No username/password supplied!"
   redirect "/"
 end
 
 post "/account/?" do
-  if user = current_user
-    if user.authenticate(params["user"]["password"])
-      if params["user"]["new_password"] and params["user"]["new_password"] == params["user"]["new_password_verification"]
-        params["user"]["password"] = params["user"]["new_password"]
-      end
-      user.update_from(params["user"])
-      DB.save_user(user)
-      flash[:notice] = "Account update successful"
-      redirect "/dashboard/#{user.name}"
-    end
-    flash[:error] = "The password is wrong!"
-    redirect "/dashboard/#{user.name}"
+  if User.current_user?
+    user = User.current_user
+    u = params["user"]
+    user.update_from(params["user"])
+    user.update_password(u["password"], u["new_password"], u["new_password_verficiation"])
+    flash[:notice] = "Account update successful."
+  else
+    flash[:error] = "You are not logged in."
   end
-  flash[:error] = "An error has occured. Please try logging in again."
   redirect "/"
 end
 
 get '/dashboard/:user/?' do |user|
-  haml :dashboard, :locals => {:user => DB.find_user(user)}
+  haml :dashboard, :locals => {:user => User.find(user)}
 end
 
 delete '/dashboard/:user/?' do |user|
-  # Delete a user
+  if User.current_user == User.find(user)
+    u = User.current_user
+    u.logout
+    u.delete
+    flash[:notice] = "Account deleted."
+  else
+    flash[:error] = "You are not logged in."
+  end
+  redirect "/"
 end
 
 get '/:name.st/?' do |name|
-  if project = DB.find_project(name)
-    return project.doIt
+  if project = Project.find(name)
+    project.doIt
   else
     redirect "/404"
   end
 end
 
 get '/:name/?' do |name|
-  haml :project, :locals => { :user => DB.find_user(current_user),
-    :project => DB.find_project(name), :name => name }
+  haml :project, :locals => { :user => User.current_user,
+    :project => Project.find(name), :name => name }
 end
 
 post '/:name/?' do |name|
-  if project = DB.find_project(name)
+  if project = Project.find(name)
     project.update_from(params["project"])
-    DB.save_user(project)
     flash[:notice] = "Update successful"
   else
     flash[:error] = "Something went wrong while creating/updating the project."
@@ -129,13 +120,17 @@ post '/:name/?' do |name|
 end
 
 delete '/:name/?' do |name|
-  # Delete a project
+  if User.current_user && p = Project.find(name)
+    p.delete
+    flash[:notice] = "Project deleted."
+  else
+    flash[:error] = "You are not logged in."
+  end
+  redirect "/"
 end
 
 get '/register/:name' do |name|
-  p = Project.new(name)
-  DB.save_project(p)
-  haml :"forms/project", :locals => { :project => p }
+  haml :"forms/project", :locals => { :project => Project.new(name) }
 end
 
 set :run, true

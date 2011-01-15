@@ -1,6 +1,10 @@
 require 'bcrypt'
+require 'model'
+require 'authentication'
 
-class User
+class User < Model
+  extend Authentication
+
   attr_accessor :name, :mail, :url, :password_hash
   attr_reader :token
 
@@ -20,9 +24,15 @@ class User
     ["name", "mail", "url", "password"].each do |option|
       self.send(:"#{option}=", hash[option])
     end
+    save
   end
 
-  def token
-    @token ||= name.hash
+  def update_password(old_pw, new_pw, new_pw_verification)
+    if authenticate(old_pw) && new_pw
+      self.password = new_pw if new_pw == new_pw_verification
+      save
+    else
+      false
+    end
   end
 end
