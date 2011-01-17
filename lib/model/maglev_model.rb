@@ -23,3 +23,4 @@ class MaglevModel
   end
 end
 
+MaglevModel.maglev_persistable
