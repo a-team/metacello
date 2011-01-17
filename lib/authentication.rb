@@ -1,12 +1,24 @@
 require 'try'
 
-class AuthenticationError < Exception
-end
-
 module Authentication
+  class Token
+    def initialize(app, opts = {})
+      @app = app
+    end
+
+    def call(env)
+      Thread.current["auth-token"] = env["rack.session"]["auth-token"]
+      @app.call(env)
+    end
+  end
+
+  def auth_token
+    Thread.current["auth-token"]
+  end
+
   def current_user
-    return nil unless session["auth_token"]
-    Token.find(session["auth_token"]).try(:user)
+    return nil unless auth_token
+    Token.find(auth_token).try(:user)
   end
 
   def current_user?
@@ -15,10 +27,10 @@ module Authentication
 
   def login(username, password)
     user = User.find(username)
-    !!user.try(:authenticate, password) ? Token.new(user).save : nil
+    !!user.try(:authenticate, password) ? Token.new(user).name : nil
   end
 
   def logout
-    Token.find(session["auth_token"]).try(:delete)
+    Token.find(auth_token).try(:delete) if auth_token
   end
 end

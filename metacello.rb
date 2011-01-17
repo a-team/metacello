@@ -12,6 +12,7 @@ require 'user'
 
 enable :sessions
 use Rack::Flash
+use Authentication::Token
 
 helpers do
   def gravatar(mail)
@@ -35,7 +36,7 @@ end
 
 post '/login/?' do
   u = params["user"]
-  if User.login(u["name"], u["password"])
+  if session["auth-token"] = User.login(u["name"], u["password"])
     flash[:notice] = "You have been logged in."
   else
     session["new_user"] = {
@@ -57,7 +58,7 @@ get "/signup/?" do
       flash[:error] = "Signup failed. A user with this name exists!"
     else
       User.new(u)
-      User.login(u["name"], u["password"])
+      session["auth-token"] = User.login(u["name"], u["password"])
       session.delete("new_user")
       flash[:notice] = "Signup successful, you are now logged in."
     end

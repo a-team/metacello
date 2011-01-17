@@ -6,5 +6,6 @@ class Token < Model
   def initialize(user)
     @user = user
     @name = BCrypt::Password.create(object.inspect).to_s
+    save
   end
 end

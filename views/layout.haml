@@ -22,11 +22,11 @@
     #header
       .logo
       .avatar
-        -if current_user?
-          %img{:href => "http://www.gravatar.com", :src => gravatar(current_user.mail)}
+        -if User.current_user?
+          %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
           %a{:href => "#", :onclick => "toggle_form('account');"} Account
           %a{:href => "/logout"} Logout
-          .account_form= haml :"forms/account", :locals => {:user => current_user}, :layout => false
+          .account_form= haml :"forms/account", :locals => {:user => User.current_user}, :layout => false
         -else
           %a{:href => "#", :onclick => "toggle_form('login');"} Login/Signup
           .login_form= haml :"forms/login", :layout => false
