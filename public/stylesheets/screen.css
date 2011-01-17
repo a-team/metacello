@@ -1,11 +1,36 @@
+body {
+  background-color: #333333; }
+
 #info-header {
   display: none; }
 
 #header {
   margin-left: auto;
   margin-right: auto;
-  width: 800px;
-  background-color: #ff1144; }
+  width: 80%;
+  padding: 8px;
+  margin-top: -10px;
+  background-color: #ee1144;
+  font-family: sans-serif;
+  -moz-border-radius-bottomleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.5); }
+  #header .search {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline; }
+    #header .search label {
+      display: none; }
+    #header .search input {
+      max-width: 30%;
+      -moz-border-radius: 5px;
+      background: url("../images/search.png") no-repeat scroll transparent;
+      background-color: white;
+      padding-left: 48px;
+      margin-left: 10px;
+      margin-bottom: -6px;
+      margin-top: 6px;
+      font-size: 36px; }
   #header .logo {
     float: left;
     width: 120px;
@@ -14,15 +39,16 @@
     float: right; }
     #header .avatar form {
       display: none; }
-  #header .search {
-    clear: both; }
 
 #container {
+  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5);
   margin-left: auto;
   margin-right: auto;
-  width: 640px;
-  background-color: #ccaa22; }
+  margin-bottom: -10px;
+  padding: 18px;
+  width: 70%;
+  height: 100%;
+  background-color: #fbffce; }
   #container .general-activity {
-    float: left; }
-  #container .personal-activity {
+    float: left;
     float: right; }
