@@ -19,6 +19,10 @@ helpers do
     mail ||= "jondoe@example.com"
     "http://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(mail)}?s=40&d=wavatar"
   end
+
+  def h(str)
+    Rack::Utils.escape_html(str)
+  end
 end
 
 get '/' do
