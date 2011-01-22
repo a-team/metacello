@@ -139,4 +139,12 @@ get '/register/:name' do |name|
   haml :"forms/project", :locals => { :project => Project.new(name) }
 end
 
+get '/projects/names' do
+  unless request.xhr?
+    ""
+  else
+    Project.all.collect {|p| p.name }.to_json
+  end
+end
+
 set :run, true
