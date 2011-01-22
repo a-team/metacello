@@ -3,7 +3,10 @@
     %title Metacello Community Page
     %meta{:charset => "utf-8"}/
     %meta{:"http-equiv" => "X-UA-Compatible", :content => "chrome=1"}/
-    %script{:type => "text/javascript", :src =>"http://yandex.st/jquery/1.4.2/jquery.min.js"}
+    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-1.4.4.min.js"}
+    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-ui-1.8.9.custom.min.js"}
+    %link{:href =>"/stylesheets/jquery/jquery-ui-1.8.9.custom.css", :media =>"screen", :rel => "stylesheet", :type => "text/css"}/
+
     %script{:type => "text/javascript", :src =>"/javascript/metacello.js"}
     %link{:href =>"/stylesheets/screen.css", :media =>"screen", :rel => "stylesheet", :type => "text/css"}/
     /[if IE]
@@ -24,16 +27,17 @@
       .avatar
         -if User.current_user?
           %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
-          %a{:href => "#", :onclick => "toggle_form('account');"} Account
+          %a{:href => "#", :id => "account-edit"} Account
           %a{:href => "/logout"} Logout
           .account_form= haml :"forms/account", :locals => {:user => User.current_user}, :layout => false
         -else
-          %a{:href => "#", :onclick => "toggle_form('login');"} Login/Signup
+          %a{:href => "#", :id => "login-signup"} Login/Signup
           .login_form= haml :"forms/login", :layout => false
       .search
         %form
           %label{:for => "search"} Search:
-          %input{:name => "search"}
+          %input{:name => "search", :id => "search-box"}
+        %div{:id => "available-projects"}
       .title
         %h3 Metacello
       .subtitle

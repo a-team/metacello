@@ -8,8 +8,10 @@
   %label{:for => "project[description]"} Description:
   %input{:type => "textbox", :name => "project[description]", :value => "#{h(project.description)}"}
   %br
-  %label{:for => "project[doIt]"} Description:
-  %input{:type => "textbox", :name => "project[doIt]", :value => "#{h(project.doIt)}"}
+  %label{:for => "project[doIt]"} Install Do-it:
+  %textarea{:name => "project[doIt]", :cols => "60", :rows => "5"}
+    :preserve
+      #{project.doIt}
   %br
   Compatible Smalltalk Systems
   - project.compatibility.keys.each_with_index do |system, idx|

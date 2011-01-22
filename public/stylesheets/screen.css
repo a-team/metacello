@@ -31,6 +31,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: inline; }
+    #header .search #available-projects {
+      display: none; }
     #header .search label {
       display: none; }
     #header .search input {
