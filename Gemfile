@@ -4,13 +4,13 @@ gem "sinatra"
 gem "haml"
 gem "compass"
 gem "coffee-script"
-if RUBY_PLATFORM =~ /ruby/
+if RUBY_ENGINE =~ /maglev/
+  gem "json_pure"
+  gem "maruku"
+  gem "bcrypt-ruby", :git => "git://github.com/timfel/bcrypt-ruby.git", :branch => "fixed-gemspec"
+else
   gem "json"
   gem "rdiscount"
   gem "bcrypt-ruby"
-else
-  gem "json_pure"
-  gem "maruku"
-  gem "bcrypt-ruby", :git => "https://github.com/timfel/bcrypt-ruby.git"
 end
 
