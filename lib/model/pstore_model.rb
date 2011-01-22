@@ -7,6 +7,10 @@ class PstoreModel
     DB.transaction(true) { DB[name] and DB[name][object_name] }
   end
 
+  def self.all
+    DB.transaction(true) { DB[name] ? DB[name].values : [] }
+  end
+
   # FIXME: What happens on transaction abort?
   def save
     DB.transaction do

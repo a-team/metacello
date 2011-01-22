@@ -6,6 +6,11 @@ class MaglevModel
     DB[name] and DB[name][object_name]
   end
 
+  def self.all
+    Maglev.abort_transaction
+    DB[name] ? DB[name].values : []
+  end
+
   # FIXME: What happens on transaction error?
   def save
     DB[self.class.name] ||= {}
