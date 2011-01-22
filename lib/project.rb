@@ -9,11 +9,9 @@ class Project < Model
     self.urls = []
     self.team = []
     self.compatibility = {}
-    self.doIt = <<-ST
-      (Installer ss project: 'MetacelloRepository')
-          install: ConfigurationOf#{name}.
-      ConfigurationOf#{name} project stableVersion load.
-    ST
+    self.doIt = "(Installer ss project: 'MetacelloRepository')\n" +
+          "\tinstall: ConfigurationOf#{name}.\n" +
+          "ConfigurationOf#{name} project stableVersion load."
     save
   end
 
