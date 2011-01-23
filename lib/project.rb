@@ -1,6 +1,10 @@
 require 'model'
 
 class Project < Model
+  DateTime.maglev_persistable
+  Date.maglev_persistable
+  Rational.maglev_persistable
+
   attr_accessor :name, :team, :urls, :description, :doIt, :screenshot,
     :updated_on, :license, :compatibility
 
