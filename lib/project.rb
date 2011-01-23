@@ -13,20 +13,21 @@ class Project < Model
     self.urls = []
     self.team = []
     self.compatibility = {}
+    self.screenshot = ""
     self.doIt = "(Installer ss project: 'MetacelloRepository')\n" +
           "\tinstall: ConfigurationOf#{name}.\n" +
           "ConfigurationOf#{name} project stableVersion load."
     save
   end
 
-  def update_from(hash)
+  def update_from(hash, who = nil)
     ["name", "urls", "description", "doIt", "screenshot", "license"].each do |option|
       self.send(:"#{option}=", hash[option])
     end
-    self.updated_on = Date.today
+    self.updated_on = DateTime.now
     # The following prepends the current user (who did this update) to the team
     # list - calling uniq will leave the first occurence in the list
-    self.team.unshift(current_user).uniq
+    self.team.unshift(who).uniq if who
     save
   end
 
