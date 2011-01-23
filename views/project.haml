@@ -1,18 +1,26 @@
 - if project
   .screenshot
     - if project.screenshot
-      %img{:src => h(project.screenshot)}
+      %img{:src => h(project.screenshot), :alt => "Project screenshot"}
     - else
-      %img{:src => "/public/missing-image.png"}
+      %img{:src => "/public/missing-image.png", :alt => "Project screenshot is missing"}
   .description= markdown(h(project.description))
   .last_updates
-    .date= h(project.updated_on.to_s)
-    .team= h(project.team[0...3])
+    Last update:
+    .date{:title => h(project.updated_on.to_s)}= h(project.updated_on.to_s)
+    .team
+      Team:
+      - project.team[0...3].each_with_index do |u, idx|
+        %a{:href => "/dashboard/#{u}"}= u
   .urls
+    Resources:
     - for url in project.urls
+      %br
       %a{:href => url}= h(url)
+  .license
+    License:
+    = h(project.license)
   .doIt= h(project.doIt)
-  .license= h(project.license)
 - else
   There is no project with that name. Care to
   %a{:href => "/register/#{name}"} create it?

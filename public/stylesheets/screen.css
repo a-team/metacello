@@ -68,3 +68,59 @@ body {
   #container .general-activity {
     float: left;
     float: right; }
+  #container .screenshot {
+    background-color: #aaaaaa;
+    border-color: #333333;
+    border-width: 2px;
+    border-style: solid solid none;
+    float: right;
+    padding: 4px;
+    padding-bottom: 20px;
+    width: 30%; }
+  #container .description {
+    float: left;
+    margin: 10px;
+    width: 60%; }
+  #container .last_updates {
+    background-color: #aaaaaa;
+    border-color: #333333;
+    border-width: 2px;
+    border-style: none solid none;
+    float: right;
+    padding: 4px;
+    width: 30%; }
+    #container .last_updates .date {
+      display: inline; }
+  #container .urls {
+    background-color: #aaaaaa;
+    border-color: #333333;
+    border-width: 2px;
+    border-style: none solid none;
+    float: right;
+    padding: 4px;
+    width: 30%; }
+    #container .urls a {
+      font-size: 12px; }
+  #container .doIt {
+    background: none repeat scroll 0 0 #cccccc;
+    float: left;
+    font-family: monospace;
+    font-size: 110%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 15px;
+    width: 40%;
+    -moz-border-radius: 4px;
+    border: 1px solid #333333;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); }
+  #container .license {
+    background-color: #aaaaaa;
+    border-color: #333333;
+    border-width: 2px;
+    border-style: none solid solid;
+    float: right;
+    padding: 4px;
+    width: 30%;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    clear: both; }

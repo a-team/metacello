@@ -10,6 +10,7 @@ Metacello.getAvailableProjects = ->
 $(document).ready ->
   document.Metacello = Metacello
   Metacello.getAvailableProjects()
+  $(".date").prettyDate()
   $("#account-edit").click ->
     $(".account_form").children("form").toggle()
     false

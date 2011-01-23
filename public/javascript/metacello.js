@@ -12,6 +12,7 @@
   $(document).ready(function() {
     document.Metacello = Metacello;
     Metacello.getAvailableProjects();
+    $(".date").prettyDate();
     $("#account-edit").click(function() {
       $(".account_form").children("form").toggle();
       return false;

@@ -65,6 +65,70 @@ body
   width: 70%
   height: 100%
   background-color: #fbffce
+
+  $sidebar-padding: 4px
+  $sidebar-border: 2px
+  $sidebar-border-color: #333
+  $sidebar-border-style: solid
+  $sidebar-color: #aaa
+  $sidebar-width: 30%
   .general-activity
     float: left
     float: right
+  .screenshot
+    background-color: $sidebar-color
+    border-color: $sidebar-border-color
+    border-width: $sidebar-border
+    border-style: $sidebar-border-style $sidebar-border-style none
+    float: right
+    padding: $sidebar-padding
+    padding-bottom: 20px
+    width: $sidebar-width
+  .description
+    float: left
+    margin: 10px
+    width: $sidebar-width * 2
+  .last_updates
+    background-color: $sidebar-color
+    border-color: $sidebar-border-color
+    border-width: $sidebar-border
+    border-style: none $sidebar-border-style none
+    float: right
+    padding: ($sidebar-padding)
+    width: $sidebar-width
+    .date
+      display: inline
+  .urls
+    background-color: $sidebar-color
+    border-color: $sidebar-border-color
+    border-width: $sidebar-border
+    border-style: none $sidebar-border-style none
+    float: right
+    padding: ($sidebar-padding)
+    width: $sidebar-width
+    a
+      font-size: 12px
+  .doIt
+    background: none repeat scroll 0 0 #CCCCCC
+    float: left
+    font-family: monospace
+    font-size: 110%
+    margin-left: 10%
+    margin-right: 10%
+    padding: 15px
+    width: 40%
+    -moz-border-radius: 4px
+    border: 1px solid #333
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5)
+  .license
+    background-color: $sidebar-color
+    border-color: $sidebar-border-color
+    border-width: $sidebar-border
+    border-style: none $sidebar-border-style $sidebar-border-style
+    float: right
+    padding: ($sidebar-padding)
+    width: $sidebar-width
+    -moz-border-radius-bottomleft: 8px
+    -moz-border-radius-bottomright: 8px
+    clear: both
+
