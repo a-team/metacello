@@ -19,7 +19,7 @@ class MaglevModel
   end
 
   def delete
-    DB[self.class.name].delete(:name) if DB[self.class.name]
+    DB[self.class.name].delete(@name) if DB[self.class.name]
     Maglev.commit_transaction
   end
 
