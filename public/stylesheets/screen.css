@@ -77,6 +77,8 @@ body {
     padding: 4px;
     padding-bottom: 20px;
     width: 30%; }
+    #container .screenshot img {
+      width: 100%; }
   #container .description {
     float: left;
     margin: 10px;
@@ -88,7 +90,8 @@ body {
     border-style: none solid none;
     float: right;
     padding: 4px;
-    width: 30%; }
+    width: 30%;
+    clear: right; }
     #container .last_updates .date {
       display: inline; }
   #container .urls {
@@ -98,7 +101,8 @@ body {
     border-style: none solid none;
     float: right;
     padding: 4px;
-    width: 30%; }
+    width: 30%;
+    clear: right; }
     #container .urls a {
       font-size: 12px; }
   #container .doIt {
@@ -123,4 +127,4 @@ body {
     width: 30%;
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
-    clear: both; }
+    clear: right; }
