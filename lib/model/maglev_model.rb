@@ -13,6 +13,7 @@ class MaglevModel
 
   # FIXME: What happens on transaction error?
   def save
+    self.class.persistable
     DB[self.class.name] ||= {}
     DB[self.class.name][name] = self
     Maglev.commit_transaction
@@ -23,8 +24,8 @@ class MaglevModel
     Maglev.commit_transaction
   end
 
-  def self.inherited(clazz)
-    clazz.maglev_persistable
+  def self.persistable
+    self.maglev_persistable unless self.maglev_persistable?
   end
 end
 
