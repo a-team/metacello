@@ -2,7 +2,6 @@
 $LOAD_PATH.unshift(File.expand_path("../lib", __FILE__))
 require 'sinatra'
 require 'haml'
-require RUBY_ENGINE == "maglev" ? 'maruku' : 'markdown'
 require 'coffee-script'
 require 'compass'
 require 'json'
@@ -10,6 +9,8 @@ require 'rack-flash'
 require 'digest/md5'
 require 'project'
 require 'user'
+
+Tilt.register :md, Tilt::MarukuTemplate
 
 enable :sessions
 use Rack::Flash

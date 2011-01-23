@@ -1,3 +1,0 @@
-require 'maruku'
-
-RDiscount = Maruku
