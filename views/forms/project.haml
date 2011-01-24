@@ -25,10 +25,10 @@
     Compatible Smalltalk Systems
     %a{:href => "#", :class => "add-box-link"} (Add another)
   - if project.systems.nil? or project.systems.empty?
-    %input{:type => "textbox", :name => "project[systems][0]"}
+    %select{:name => "project[systems][0]"}
   - else
     - project.systems.each_with_index do |url, idx|
-      %input{:type => "textbox", :name => "project[systems][#{idx}]", :value => "#{h(project.systems[idx])}"}
+      %select{:name => "project[systems][#{idx}]", :value => "#{h(project.systems[idx])}"}
   %br
   %label{:for => "project[license]"} License:
   %input{:type => "textbox", :name => "project[license]", :value => "#{h(project.license)}"}

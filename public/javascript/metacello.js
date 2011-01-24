@@ -13,14 +13,16 @@
   Metacello.addTextboxLink = function(a) {
     var count, name_prefix;
     name_prefix = $(a).parent().attr("for").replace("[0]", "");
-    count = $("input[name^='" + name_prefix + "']").size();
+    count = $("input,select").filter(function() {
+      return $(this).attr("name").search(name_prefix.replace(/[\[\]]/g, "\\$&")) > -1;
+    }).size() - 1;
     $(a).data("count", count);
     return $(a).click(function() {
       var input, name;
       count = $(this).data("count");
       name = $(this).parent().attr("for").replace("[0]", "[" + count + "]");
-      input = $("input[name='" + name + "']")[0];
-      $(input).clone().attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).attr("value", "").insertAfter(input);
+      input = $("[name='" + name + "']");
+      input.clone().attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).attr("value", "").insertAfter(input);
       $(this).data("count", count + 1);
       return false;
     });

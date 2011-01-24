@@ -136,7 +136,7 @@ body {
       color: #aaaaaa; }
       #container form label a:hover {
         color: #222222; }
-  #container form input, #container form textarea {
+  #container form input, #container form textarea, #container form select {
     float: right;
     clear: right;
     width: 60ex; }
