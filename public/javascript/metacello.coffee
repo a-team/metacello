@@ -1,14 +1,11 @@
 Metacello = {}
 
-Metacello.availableProjects = ->
-  $("#available-projects").data('names')
-
 Metacello.getAvailableProjects = ->
   $.getJSON("/projects/names", (data) ->
-    $('#available-projects').data('names', data))
+    $( "#search-box" ).autocomplete("option", "source", data))
 
 $(document).ready ->
-  document.Metacello = Metacello
+  window.Metacello = Metacello
   Metacello.getAvailableProjects()
   $(".date").prettyDate()
   $("#account-edit").click ->
@@ -18,7 +15,7 @@ $(document).ready ->
     $(".login_form").children("form").toggle()
     false
   $("#search-box").autocomplete({
-      source: Metacello.availableProjects,
+      source: [],
       minLength: 0
   })
   if $("#info-header").children().size() > 1

@@ -1,16 +1,13 @@
 (function() {
   var Metacello;
   Metacello = {};
-  Metacello.availableProjects = function() {
-    return $("#available-projects").data('names');
-  };
   Metacello.getAvailableProjects = function() {
     return $.getJSON("/projects/names", function(data) {
-      return $('#available-projects').data('names', data);
+      return $("#search-box").autocomplete("option", "source", data);
     });
   };
   $(document).ready(function() {
-    document.Metacello = Metacello;
+    window.Metacello = Metacello;
     Metacello.getAvailableProjects();
     $(".date").prettyDate();
     $("#account-edit").click(function() {
@@ -22,7 +19,7 @@
       return false;
     });
     $("#search-box").autocomplete({
-      source: Metacello.availableProjects,
+      source: [],
       minLength: 0
     });
     if ($("#info-header").children().size() > 1) {
