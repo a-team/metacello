@@ -6,13 +6,13 @@ class Project < Model
   Rational.maglev_persistable
 
   attr_accessor :name, :team, :urls, :description, :doIt, :screenshot,
-    :updated_on, :license, :compatibility
+    :updated_on, :license, :systems
 
   def initialize(name)
     self.name = name
     self.urls = []
     self.team = []
-    self.compatibility = {}
+    self.systems = []
     self.screenshot = ""
     self.doIt = "(Installer ss project: 'MetacelloRepository')\n" +
           "\tinstall: ConfigurationOf#{name}.\n" +
