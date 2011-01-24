@@ -1,12 +1,31 @@
 Metacello = {}
 
-Metacello.getAvailableProjects = ->
+Metacello.availableProjectsSearch = (box) ->
+  $(box).autocomplete({ source: [], minLength: 0 })
   $.getJSON("/projects/names", (data) ->
-    $( "#search-box" ).autocomplete("option", "source", data))
+    $(box).autocomplete("option", "source", data))
+
+Metacello.addTextboxLink = (a) ->
+  # First, get the existing textboxes for this link to get the count
+  name_prefix = $(a).parent().attr("for").replace("[0]", "")
+  count = $("input[name^='" + name_prefix  + "']").size()
+  $(a).data("count", count)
+  # Now, set a handler to add a textbox and increase the count on click
+  $(a).click ->
+    count = $(this).data("count")
+    name = $(this).parent().attr("for").replace("[0]", "[" + count + "]")
+    input = $("input[name='" + name + "']")[0]
+    $(input).clone().
+        attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).
+        attr("value", "").
+        insertAfter(input)
+    $(this).data("count", count + 1)
+    false
 
 $(document).ready ->
   window.Metacello = Metacello
-  Metacello.getAvailableProjects()
+  Metacello.availableProjectsSearch("#search-box")
+  Metacello.addTextboxLink("a.add-box-link")
   $(".date").prettyDate()
   $("#account-edit").click ->
     $(".account_form").children("form").toggle()
@@ -14,15 +33,5 @@ $(document).ready ->
   $("#login-signup").click ->
     $(".login_form").children("form").toggle()
     false
-  $("#search-box").autocomplete({
-      source: [],
-      minLength: 0
-  })
   if $("#info-header").children().size() > 1
     $("#info-header").slideDown()
-  $(".add-system-link").click ->
-    # %label{:for => "project[compatibility][#{idx}][system]"} Smalltalk:
-    # %input{:type => "textbox", :name => "project[compatibility][#{idx}][system]", :value => "#{h(system)}"}
-    # %label{:for => "project[compatibility][#{idx}][versions]"} Versions:
-    # %input{:type => "textbox", :name => "project[compatibility][#{idx}][versions]", :value => "#{h(project.compatibility[system])}"}
-    false

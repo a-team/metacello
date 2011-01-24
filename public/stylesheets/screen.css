@@ -128,3 +128,15 @@ body {
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
     clear: right; }
+  #container form label {
+    float: left;
+    clear: both; }
+    #container form label a {
+      font-size: small;
+      color: #aaaaaa; }
+      #container form label a:hover {
+        color: #222222; }
+  #container form input, #container form textarea {
+    float: right;
+    clear: right;
+    width: 60ex; }
