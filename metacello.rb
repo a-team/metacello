@@ -122,7 +122,7 @@ post '/:name/?' do |name|
     project.update_from(params["project"])
     flash[:notice] = "Update successful"
   else
-    flash[:error] = "Something went wrong while creating/updating the project."
+    Project.new(name).update_from(params["project"])
   end
   redirect "/#{name}"
 end
@@ -138,7 +138,19 @@ delete '/:name/?' do |name|
 end
 
 get '/register/:name' do |name|
-  haml :"forms/project", :locals => { :project => Project.new(name) }
+  if Project.find(name)
+    redirect "/500"
+  else
+    haml :"forms/project", :locals => { :project => Project.new(name) }
+  end
+end
+
+get '/edit/:name' do |name|
+  if Project.find(name)
+    haml :"forms/project", :locals => { :project => Project.find(name) }
+  else
+    redirect "/404"
+  end
 end
 
 get '/projects/names' do

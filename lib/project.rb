@@ -17,13 +17,16 @@ class Project < Model
     self.doIt = "(Installer ss project: 'MetacelloRepository')\n" +
           "\tinstall: ConfigurationOf#{name}.\n" +
           "ConfigurationOf#{name} project stableVersion load."
-    save
+    self.license = "MIT"
   end
 
   def update_from(hash, who = nil)
-    ["name", "urls", "description", "doIt", "screenshot", "license"].each do |option|
-      self.send(:"#{option}=", hash[option])
-    end
+    self.description = hash["description"]
+    self.doIt = hash["doIt"]
+    self.screenshot = hash["screenshot"]
+    self.license = hash["license"]
+    self.urls = (hash["urls"] || {}).sort_by {|a| a.first.to_i }.collect {|a| a.last }
+    self.systems = (hash["systems"] || {}).sort_by {|a| a.first.to_i }.collect {|a| a.last }
     self.updated_on = DateTime.now
     # The following prepends the current user (who did this update) to the team
     # list - calling uniq will leave the first occurence in the list
