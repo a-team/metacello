@@ -15,10 +15,10 @@ Metacello.addTextboxLink = (a) ->
   # Now, set a handler to add a textbox and increase the count on click
   $(a).click ->
     count = $(this).data("count")
-    name = $(this).parent().attr("for").replace("[0]", "[" + count + "]")
-    input = $("[name='" + name + "']")
+    name = $(this).parent().attr("for").replace("[0]", "[#{count}]")
+    input = $("[name='#{name}']")
     input.clone().
-        attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).
+        attr("name", name.replace("[#{count}]", "[#{count + 1}]")).
         attr("value", "").
         insertAfter(input)
     $(this).data("count", count + 1)
