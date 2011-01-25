@@ -1,5 +1,5 @@
 body {
-  background-color: #333333; }
+  background-color: #b6bfb0; }
 
 #info-header {
   display: none; }
@@ -10,7 +10,7 @@ body {
   width: 80%;
   padding: 8px;
   margin-top: -10px;
-  background-color: #ee1144;
+  background-color: #6ab236;
   font-family: sans-serif;
   -moz-border-radius-bottomleft: 20px;
   -moz-border-radius-bottomright: 20px;
@@ -18,30 +18,37 @@ body {
   overflow: auto; }
   #header .logo {
     float: left;
-    overflow: auto; }
+    overflow: hidden; }
     #header .logo .title {
-      float: left;
+      position: relative;
       font-family: serif;
       font-size: 42px;
       font-style: italic;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      top: 0; }
+      #header .logo .title h3 {
+        margin: 0; }
     #header .logo .subtitle {
-      float: left; }
+      float: left;
+      position: relative;
+      bottom: 0.5em;
+      left: 1em; }
   #header .search {
-    float: left; }
+    float: left;
+    max-width: 40%; }
     #header .search #available-projects {
       display: none; }
     #header .search label {
       display: none; }
     #header .search input {
-      max-width: 30%;
+      max-width: 50%;
       -moz-border-radius: 5px;
-      background: url("../images/search.png") no-repeat scroll transparent;
+      background: url("../images/search_32.png") no-repeat scroll transparent;
       background-color: white;
       padding-left: 48px;
       margin-left: 10px;
       margin-bottom: -6px;
-      margin-top: 6px;
+      margin-top: 12px;
       font-size: 36px; }
   #header .avatar {
     float: right; }
@@ -55,16 +62,20 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: -10px;
-  padding: 18px;
+  padding: 35px 18px 18px;
   width: 70%;
   height: 100%;
-  background-color: #fbffce; }
+  background-color: #d7f1c6; }
   #container .general-activity {
-    float: left;
-    float: right; }
+    float: right;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #427223;
+    padding: 4px;
+    margin: 2px; }
   #container .screenshot {
-    background-color: #aaaaaa;
-    border-color: #333333;
+    background-color: #b6bfb0;
+    border-color: #427223;
     border-width: 2px;
     border-style: solid solid none;
     float: right;
@@ -78,8 +89,8 @@ body {
     margin: 10px;
     width: 60%; }
   #container .last_updates {
-    background-color: #aaaaaa;
-    border-color: #333333;
+    background-color: #b6bfb0;
+    border-color: #427223;
     border-width: 2px;
     border-style: none solid none;
     float: right;
@@ -89,8 +100,8 @@ body {
     #container .last_updates .date {
       display: inline; }
   #container .urls {
-    background-color: #aaaaaa;
-    border-color: #333333;
+    background-color: #b6bfb0;
+    border-color: #427223;
     border-width: 2px;
     border-style: none solid none;
     float: right;
@@ -109,11 +120,11 @@ body {
     padding: 15px;
     width: 40%;
     -moz-border-radius: 4px;
-    border: 1px solid #333333;
+    border: 1px solid #b6bfb0;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); }
   #container .license {
-    background-color: #aaaaaa;
-    border-color: #333333;
+    background-color: #b6bfb0;
+    border-color: #427223;
     border-width: 2px;
     border-style: none solid solid;
     float: right;
