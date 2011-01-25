@@ -6,26 +6,34 @@
       source: [],
       minLength: 0
     });
-    return $.getJSON("/projects/names", function(data) {
+    $.getJSON("/projects/names", function(data) {
       return $(box).autocomplete("option", "source", data);
+    });
+    return $(box).keypress(function(event) {
+      if (event.keyCode === 13) {
+        document.location.pathname = $(this).attr("value");
+        return false;
+      }
     });
   };
   Metacello.addTextboxLink = function(a) {
     var count, name_prefix;
-    name_prefix = $(a).parent().attr("for").replace("[0]", "");
-    count = $("input,select").filter(function() {
-      return $(this).attr("name").search(name_prefix.replace(/[\[\]]/g, "\\$&")) > -1;
-    }).size() - 1;
-    $(a).data("count", count);
-    return $(a).click(function() {
-      var input, name;
-      count = $(this).data("count");
-      name = $(this).parent().attr("for").replace("[0]", "[" + count + "]");
-      input = $("[name='" + name + "']");
-      input.clone().attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).attr("value", "").insertAfter(input);
-      $(this).data("count", count + 1);
-      return false;
-    });
+    if ($("a.add-box-link").size() > 0) {
+      name_prefix = $(a).parent().attr("for").replace("[0]", "");
+      count = $("input,select").filter(function() {
+        return $(this).attr("name").search(name_prefix.replace(/[\[\]]/g, "\\$&")) > -1;
+      }).size() - 1;
+      $(a).data("count", count);
+      return $(a).click(function() {
+        var input, name;
+        count = $(this).data("count");
+        name = $(this).parent().attr("for").replace("[0]", "[" + count + "]");
+        input = $("[name='" + name + "']");
+        input.clone().attr("name", name.replace("[" + count + "]", "[" + (count + 1) + "]")).attr("value", "").insertAfter(input);
+        $(this).data("count", count + 1);
+        return false;
+      });
+    }
   };
   $(document).ready(function() {
     window.Metacello = Metacello;

@@ -4,25 +4,30 @@ Metacello.availableProjectsSearch = (box) ->
   $(box).autocomplete({ source: [], minLength: 0 })
   $.getJSON("/projects/names", (data) ->
     $(box).autocomplete("option", "source", data))
+  $(box).keypress (event) ->
+    if event.keyCode == 13
+      document.location.pathname = $(this).attr("value")
+      false
 
 Metacello.addTextboxLink = (a) ->
   # First, get the existing textboxes for this link to get the count
-  name_prefix = $(a).parent().attr("for").replace("[0]", "")
-  count = $("input,select").filter ->
-    $(this).attr("name").search(name_prefix.replace(/[\[\]]/g, "\\$&")) > -1
-  .size() - 1
-  $(a).data("count", count)
-  # Now, set a handler to add a textbox and increase the count on click
-  $(a).click ->
-    count = $(this).data("count")
-    name = $(this).parent().attr("for").replace("[0]", "[#{count}]")
-    input = $("[name='#{name}']")
-    input.clone().
-        attr("name", name.replace("[#{count}]", "[#{count + 1}]")).
-        attr("value", "").
-        insertAfter(input)
-    $(this).data("count", count + 1)
-    false
+  if $("a.add-box-link").size() > 0
+    name_prefix = $(a).parent().attr("for").replace("[0]", "")
+    count = $("input,select").filter ->
+      $(this).attr("name").search(name_prefix.replace(/[\[\]]/g, "\\$&")) > -1
+    .size() - 1
+    $(a).data("count", count)
+    # Now, set a handler to add a textbox and increase the count on click
+    $(a).click ->
+      count = $(this).data("count")
+      name = $(this).parent().attr("for").replace("[0]", "[#{count}]")
+      input = $("[name='#{name}']")
+      input.clone().
+          attr("name", name.replace("[#{count}]", "[#{count + 1}]")).
+          attr("value", "").
+          insertAfter(input)
+      $(this).data("count", count + 1)
+      false
 
 $(document).ready ->
   window.Metacello = Metacello
