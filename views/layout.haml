@@ -25,7 +25,16 @@
       -if flash.has?(:notice)
         .notice= flash[:notice]
     #header
+      .search
+        %form
+          %label{:for => "search"} Search:
+          %input{:name => "search", :id => "search-box"}
+        %div{:id => "available-projects"}
       .logo
+        .title
+          %h3 Metacello
+        .subtitle
+          %h8 Your Smalltalk project library
       .avatar
         -if User.current_user?
           %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
@@ -35,14 +44,5 @@
         -else
           %a{:href => "#", :id => "login-signup"} Login/Signup
           .login_form= haml :"forms/login", :layout => false
-      .search
-        %form
-          %label{:for => "search"} Search:
-          %input{:name => "search", :id => "search-box"}
-        %div{:id => "available-projects"}
-      .title
-        %h3 Metacello
-      .subtitle
-        %h8 Your Smalltalk project library
     #container
       = yield
