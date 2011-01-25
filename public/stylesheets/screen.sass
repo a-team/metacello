@@ -1,7 +1,16 @@
 @import base.sass
 
+$base-color:   #6AB236
+$first-color:  #97FE4D
+$second-color: #B6BFB0
+$third-color:  #D7F1C6
+$fourth-color: #427223
+
+$background-color: $second-color
+$header-color: $base-color
+$content-color: $third-color
 body
-  background-color: #333
+  background-color: $background-color
 
 #info-header
   display: none
@@ -11,7 +20,7 @@ body
   width: 80%
   padding: 8px
   margin-top: -10px
-  background-color: #ee1144
+  background-color: $header-color
   font-family: sans-serif
   -moz-border-radius-bottomleft: 20px
   -moz-border-radius-bottomright: 20px
@@ -19,30 +28,37 @@ body
   overflow: auto
   .logo
     float: left
-    overflow: auto
+    overflow: hidden
     .title
-      float: left
+      position: relative
       font-family: serif
       font-size: 42px
       font-style: italic
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5)
+      top: 0
+      h3
+        margin: 0
     .subtitle
       float: left
+      position: relative
+      bottom: 0.5em
+      left: 1em
   .search
     float: left
+    max-width: 40%
     #available-projects
       display: none
     label
       display: none
     input
-      max-width: 30%
+      max-width: 50%
       -moz-border-radius: 5px
       background: url("../images/search.png") no-repeat scroll transparent
       background-color: #fff
       padding-left: 48px
       margin-left: 10px
       margin-bottom: -6px
-      margin-top: 6px
+      margin-top: 12px
       font-size: 36px
   .avatar
     float: right
@@ -55,20 +71,24 @@ body
   margin-left: auto
   margin-right: auto
   margin-bottom: -10px
-  padding: 18px
+  padding: 35px 18px 18px
   width: 70%
   height: 100%
-  background-color: #fbffce
+  background-color: $content-color
 
   $sidebar-padding: 4px
   $sidebar-border: 2px
-  $sidebar-border-color: #333
+  $sidebar-border-color: $fourth-color
   $sidebar-border-style: solid
-  $sidebar-color: #aaa
+  $sidebar-color: $background-color
   $sidebar-width: 30%
   .general-activity
-    float: left
     float: right
+    border-width: $sidebar-border
+    border-style: $sidebar-border-style
+    border-color: $sidebar-border-color
+    padding: $sidebar-padding
+    margin: 2px
   .screenshot
     background-color: $sidebar-color
     border-color: $sidebar-border-color
@@ -116,7 +136,7 @@ body
     padding: 15px
     width: 40%
     -moz-border-radius: 4px
-    border: 1px solid #333
+    border: 1px solid $background-color
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5)
   .license
     background-color: $sidebar-color
