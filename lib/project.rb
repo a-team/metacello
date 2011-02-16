@@ -27,7 +27,7 @@ class Project < Model
     self.license = hash["license"]
     self.urls = (hash["urls"] || {}).sort_by {|a| a.first.to_i }.collect {|a| a.last }
     self.systems = (hash["systems"] || {}).sort_by {|a| a.first.to_i }.collect {|a| a.last }
-    self.updated_on = DateTime.now
+    # self.updated_on = DateTime.now
     # The following prepends the current user (who did this update) to the team
     # list - calling uniq will leave the first occurence in the list
     self.team.unshift(who).uniq if who

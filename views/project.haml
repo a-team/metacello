@@ -1,26 +1,59 @@
 - if project
-  .screenshot
-    - if project.screenshot
-      %img{:src => h(project.screenshot), :alt => "Project screenshot"}
-    - else
-      %img{:src => "/public/missing-image.png", :alt => "Project screenshot is missing"}
+  .projectlogobox
+    .projectlogo
+      - if project.screenshot
+        %img{:src => h(project.screenshot), :alt => "Project screenshot"}
+      - else
+        %img{:src => "/public/missing-image.png", :alt => "Project screenshot is missing"}
+      
+  .projectlink
+    read more
+  
+  .projectname= h(project.name)
+    
+  .infobox
+    .info
+      .infoline= 'Last update :'
+      .date= '12.12.2012' 
+      //h(project.updated_on.to_s)
+    .info
+      .infoline= 'License :'
+      .license= h(project.license)
+    .info
+      .infoline= 'Team :'
+      //dummy
+      //Team:
+      //- project.team[0...3].each_with_index do |u, idx|
+      //  %a{:href => "/dashboard/#{u}"}= u
+      .author= 'Markus Behrens'
+      .author= 'Tim Felgentreff'
+      .author= 'Caroline Fetzer'
+      .author= 'Markus Götz'
+      .author= 'Sebastian Hillig'
+      .author= 'Christian Ress'
+      .author= 'Tobias Pape'
+      .author= 'Martin Schenck'
+    .info
+      .infoline= 'Dependencies'
+      .dependence= 'Seaside 3.0'
+      .dependence= 'SqueakSave'
+    .info
+      .infoline= 'Repositories :'
+      .repository= markdown('http://www.hpi.uni-potsdam.de/hirschfeld/squeaksource/')
+    
   .description= markdown(h(project.description))
-  .last_updates
-    Last update:
-    .date{:title => h(project.updated_on.to_s)}= h(project.updated_on.to_s)
-    .team
-      Team:
-      - project.team[0...3].each_with_index do |u, idx|
-        %a{:href => "/dashboard/#{u}"}= u
-  .urls
-    Resources:
-    - for url in project.urls
-      %br
-      %a{:href => url}= h(url)
-  .license
-    License:
-    = h(project.license)
-  .doIt= h(project.doIt)
+  
+  .code= h(project.doIt)
+  
+  .screenshots
+    .infoline= 'Screenshots :'
+    .pic
+      %img{:src => 'https://www.hpi.uni-potsdam.de/hirschfeld/trac/SqueakCommunityProjects/raw-attachment/wiki/deli/deli-home.png'}
+    .pic
+      %img{:src => 'https://www.hpi.uni-potsdam.de/hirschfeld/trac/SqueakCommunityProjects/raw-attachment/wiki/deli/deli-groups.png'}  
+    .pic
+      %img{:src => 'https://www.hpi.uni-potsdam.de/hirschfeld/trac/SqueakCommunityProjects/raw-attachment/wiki/deli/deli-admin.png'}  
+      
 - else
   There is no project with that name. Care to
   %a{:href => "/register/#{name}"} create it?

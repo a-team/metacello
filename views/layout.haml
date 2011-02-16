@@ -30,11 +30,6 @@
           %label{:for => "search"} Search:
           %input{:name => "search", :id => "search-box"}
         %div{:id => "available-projects"}
-      .logo
-        .title
-          %h3 Metacello
-        .subtitle
-          %h8 Your Smalltalk project library
       .avatar
         -if User.current_user?
           %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
@@ -43,6 +38,22 @@
           .account_form= haml :"forms/account", :locals => {:user => User.current_user}, :layout => false
         -else
           %a{:href => "#", :id => "login-signup"} Login/Signup
-          .login_form= haml :"forms/login", :layout => false
+          .login_form= haml :"forms/login", :layout => false    
+      .logo
+        .title
+          Metacello
+          .domain
+            \.org
+        .subtitle
+          Your Smalltalk project library
+
     #container
-      = yield
+      #contentheader
+        Who it Works | Contact | FAQ's | Help
+      #content
+        = yield
+      #contentfooter
+        .copyright
+          &copy; Copyrights
+        .footerlinks
+          AGB's | Impressum | Stuff nobody reads
