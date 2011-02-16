@@ -1,0 +1,40 @@
+GIT
+  remote: git://github.com/timfel/bcrypt-ruby.git
+  revision: beed20cf2fd8bee2410c403a06cffee856bb9f56
+  branch: fixed-gemspec
+  specs:
+    bcrypt-ruby (2.1.4)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    coffee-script (2.1.1)
+      coffee-script-source
+    coffee-script-source (1.0.0)
+    compass (0.10.6)
+      haml (>= 3.0.4)
+    haml (3.0.25)
+    json_pure (1.5.1)
+    maruku (0.6.0)
+      syntax (>= 1.0.0)
+    rack (1.2.1)
+    rack-flash (0.1.1)
+      rack
+    sinatra (1.1.2)
+      rack (~> 1.1)
+      tilt (~> 1.2)
+    syntax (1.0.0)
+    tilt (1.2.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bcrypt-ruby!
+  coffee-script
+  compass
+  haml
+  json_pure
+  maruku
+  rack-flash
+  sinatra
