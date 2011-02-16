@@ -1,31 +1,43 @@
 @import base.sass
 
+// definings
+
+$background-color: #333333
+
 $base-color:   #6AB236
 $first-color:  #97FE4D
 $second-color: #B6BFB0
 $third-color:  #D7F1C6
 $fourth-color: #427223
 
-$background-color: $second-color
+// calculations
+
 $header-color: $base-color
 $content-color: $third-color
+
+// style sheet
+
 body
   background-color: $background-color
 
 #info-header
   display: none
+
 #header
-  margin-left: auto
-  margin-right: auto
-  width: 80%
-  padding: 8px
-  margin-top: -10px
-  background-color: $header-color
-  font-family: sans-serif
-  -moz-border-radius-bottomleft: 20px
-  -moz-border-radius-bottomright: 20px
-  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.5)
-  overflow: auto
+	width: 80%;
+	margin-top: -10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 0px 15px 0px;
+	text-align: center;	
+	font-family: sans-serif;
+	background-color: #cacaca; // fallback
+	background: -webkit-gradient(linear, left top, left bottom, from(#d5d5d5), to(#bfbfbf));
+	border-radius: 0px 0px 30px 0px;
+	-webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.40);
+	-moz-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.40);
+	overflow: auto;
+
   .logo
     float: left
     overflow: hidden

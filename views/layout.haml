@@ -37,13 +37,12 @@
           %a{:href => "/logout"} Logout
           .account_form= haml :"forms/account", :locals => {:user => User.current_user}, :layout => false
         -else
-          %a{:href => "#", :id => "login-signup"} Login/Signup
+          %a{:href => "#", :id => "login-signup"} Login / Signup
           .login_form= haml :"forms/login", :layout => false    
       .logo
         .title
           Metacello
-          .domain
-            \.org
+          .domain='.org'
         .subtitle
           Your Smalltalk project library
 
