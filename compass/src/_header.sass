@@ -1,0 +1,91 @@
+#info-header
+  display: none
+
+#header
+  width: $header-space
+  text-align: center
+  margin: -10px auto 0px auto
+  padding: 0px 0px 15px 0px
+
+  background-color: $header-color //fallback
+  +linear-gradient(color-stops($header-color-top, $header-color-bottom), top)  
+  +border-bottom-right-radius(30px)
+
+  // mixin not working
+  -webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.40)
+  -moz-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.40)
+
+  // needed for the shadow to fall on the container
+  position: relative
+  z-index: 1
+  overflow: visible
+
+  .logo
+    .title
+      margin-top: 4px
+      padding-left: 20%
+      color: $title-color
+      font: $logo-font
+      +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 2px)
+      letter-spacing: 5px
+      
+    .domain
+      display: inline
+      z-index: -1
+      color: $title-domain-color
+      text-shadow: none
+      font-size: 36px
+      
+    .subtitle
+      padding-left: 10%
+      letter-spacing: 1px
+      color: $subtitle-color
+      text-shadow: rgba(66,66,66,0.25) 1px 1px 2px
+      font-size: 16px
+      
+  .search
+    width: 25%
+    float: left
+    display: inline-block
+    position: absolute
+    top: 75px
+    padding: 0px 14px 10px 14px
+    background-color: #cacaca
+    background: -webkit-gradient(linear, left top, left bottom, from(#c2c2c2), to(#b9b9b9))
+
+    background-color: $search-box-color //fallback
+    +linear-gradient(color-stops($search-box-color-top, $search-box-color-bottom), top)    
+  
+    +border-bottom-radius(30px)
+    
+    -webkit-box-shadow: -4px 10px 4px rgba(10, 10, 10, 0.3)
+    -moz-box-shadow: -4px 10px 4px rgba(10, 10, 10, 0.3)
+    form
+      margin: 0
+    input
+      width:  100%
+      border-radius: 20px
+      padding: 5px 10px 3px 36px
+      background: #f4f4f4 url("") no-repeat scroll
+      font: 20px "Courier New", Courier, mono
+    #available-projects
+      border: 1px
+    label
+      display: none
+      
+  .avatar
+    float: right
+    width: 15%
+    background-color: #919191
+    border-radius: 0px 0px 10px 10px
+    margin-right: 6px
+    padding-top: 5px
+    padding-bottom: 5px
+    padding-right: 15px
+    
+    a
+      text-align: right
+      text-decoration: none
+      color: #feffff
+    form
+      display: none

@@ -5,11 +5,13 @@
         %img{:src => h(project.screenshot), :alt => "Project screenshot"}
       - else
         %img{:src => "/public/missing-image.png", :alt => "Project screenshot is missing"}
-      
+
   .projectlink
     read more
-  
-  .projectname= h(project.name)
+    
+  .projectname
+    = h(project.name)
+    .projecttitle= '- Submitting System'
     
   .infobox
     .info

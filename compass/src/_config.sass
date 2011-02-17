@@ -1,0 +1,37 @@
+// color
+$background-color : #333333
+
+$base-color : #6AB236
+$font-color : #000
+
+$first-color  :  #cacaca
+$second-color : #eaeaea
+$third-color  :  #D7F1C6
+$fourth-color : #427223
+
+$header-color    : $first-color
+$container-color : $second-color
+
+$title-color        : $font-color
+$title-domain-color : rgba(255,255,255,0.4)
+$subtitle-color     : $title-color + 0.2 * #fff
+
+
+// fonts
+$font-style       : "Lucida Grande", "Lucida", "Verdana", "sans-serif"
+$font-title-style : "Georgia", "Times New Roman", "Times", "serif"
+
+$font-size : 10px
+$font      : $font-size $font-style
+
+
+// header
+$gradient-diff : 5        // in %
+$header-space  : 80%
+$logo-font     : italic 52px $font-title-style
+
+$header-color-top   : $header-color + ( #ffffff * ($gradient-diff / 100) )
+$header-color-bottom: $header-color - ( #ffffff * ($gradient-diff / 100) )
+$search-box-color: $header-color
+$search-box-color-top   : $search-box-color - ( #ffffff * ($gradient-diff * 0.65 / 100) )
+$search-box-color-bottom: $search-box-color - ( #ffffff * ($gradient-diff * 1.65 / 100) )

@@ -1,147 +1,364 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 14, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+/* line 17, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
-  background-color: #b6bfb0; }
+  line-height: 1;
+  color: black;
+  background: white;
+}
 
+/* line 19, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 21, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+
+/* line 23, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 25, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: "" "";
+}
+/* line 96, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+}
+
+/* line 27, ../../../../../../../.rvm/gems/ruby-1.9.2-p136@metachello/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 16, ../../compass/src/screen.sass */
+body {
+  background-color: #333333;
+  font: 10px "Lucida Grande", "Lucida", "Verdana", "sans-serif";
+  color: black;
+}
+
+/* line 1, ../../compass/src/_header.sass */
 #info-header {
-  display: none; }
+  display: none;
+}
 
+/* line 4, ../../compass/src/_header.sass */
 #header {
-  margin-left: auto;
-  margin-right: auto;
   width: 80%;
-  padding: 8px;
-  margin-top: -10px;
-  background-color: #6ab236;
-  font-family: sans-serif;
-  -moz-border-radius-bottomleft: 20px;
-  -moz-border-radius-bottomright: 20px;
-  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.5);
-  overflow: auto; }
-  #header .logo {
-    float: left;
-    overflow: hidden; }
-    #header .logo .title {
-      position: relative;
-      font-family: serif;
-      font-size: 42px;
-      font-style: italic;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      top: 0; }
-      #header .logo .title h3 {
-        margin: 0; }
-    #header .logo .subtitle {
-      float: left;
-      position: relative;
-      bottom: 0.5em;
-      left: 1em; }
-  #header .search {
-    float: left;
-    max-width: 40%; }
-    #header .search #available-projects {
-      display: none; }
-    #header .search label {
-      display: none; }
-    #header .search input {
-      max-width: 50%;
-      -moz-border-radius: 5px;
-      background: url("../images/search_32.png") no-repeat scroll transparent;
-      background-color: white;
-      padding-left: 48px;
-      margin-left: 10px;
-      margin-bottom: -6px;
-      margin-top: 12px;
-      font-size: 36px; }
-  #header .avatar {
-    float: right; }
-    #header .avatar a {
-      text-align: right; }
-    #header .avatar form {
-      display: none; }
+  text-align: center;
+  margin: -10px auto 0px auto;
+  padding: 0px 0px 15px 0px;
+  background-color: #cacaca;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #d6d6d6), color-stop(100%, #bebebe));
+  background-image: -moz-linear-gradient(top, #d6d6d6 0%, #bebebe 100%);
+  background-image: linear-gradient(top, #d6d6d6 0%, #bebebe 100%);
+  -moz-border-radius-bottomright: 30px;
+  -webkit-border-bottom-right-radius: 30px;
+  -o-border-bottom-right-radius: 30px;
+  -ms-border-bottom-right-radius: 30px;
+  -khtml-border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  -webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+/* line 24, ../../compass/src/_header.sass */
+#header .logo .title {
+  margin-top: 4px;
+  padding-left: 20%;
+  color: black;
+  font: italic 52px "Georgia", "Times New Roman", "Times", "serif";
+  text-shadow: rgba(0, 0, 0, 0.5) 2px 1px 2px;
+  letter-spacing: 5px;
+}
+/* line 32, ../../compass/src/_header.sass */
+#header .logo .domain {
+  display: inline;
+  z-index: -1;
+  color: rgba(255, 255, 255, 0.4);
+  text-shadow: none;
+  font-size: 36px;
+}
+/* line 39, ../../compass/src/_header.sass */
+#header .logo .subtitle {
+  padding-left: 10%;
+  letter-spacing: 1px;
+  color: #333333;
+  text-shadow: rgba(66, 66, 66, 0.25) 1px 1px 2px;
+  font-size: 16px;
+}
+/* line 46, ../../compass/src/_header.sass */
+#header .search {
+  width: 25%;
+  float: left;
+  display: inline-block;
+  position: absolute;
+  top: 75px;
+  padding: 0px 14px 10px 14px;
+  background-color: #cacaca;
+  background: -webkit-gradient(linear, left top, left bottom, from(#c2c2c2), to(#b9b9b9));
+  background-color: #cacaca;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c2c2c2), color-stop(100%, #b5b5b5));
+  background-image: -moz-linear-gradient(top, #c2c2c2 0%, #b5b5b5 100%);
+  background-image: linear-gradient(top, #c2c2c2 0%, #b5b5b5 100%);
+  -moz-border-radius-bottomleft: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  -o-border-bottom-left-radius: 30px;
+  -ms-border-bottom-left-radius: 30px;
+  -khtml-border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  -moz-border-radius-bottomright: 30px;
+  -webkit-border-bottom-right-radius: 30px;
+  -o-border-bottom-right-radius: 30px;
+  -ms-border-bottom-right-radius: 30px;
+  -khtml-border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  -webkit-box-shadow: -4px 10px 4px rgba(10, 10, 10, 0.3);
+  -moz-box-shadow: -4px 10px 4px rgba(10, 10, 10, 0.3);
+}
+/* line 63, ../../compass/src/_header.sass */
+#header .search form {
+  margin: 0;
+}
+/* line 65, ../../compass/src/_header.sass */
+#header .search input {
+  width: 100%;
+  border-radius: 20px;
+  padding: 5px 10px 3px 36px;
+  background: #f4f4f4 url("") no-repeat scroll;
+  font: 20px "Courier New", Courier, mono;
+}
+/* line 71, ../../compass/src/_header.sass */
+#header .search #available-projects {
+  border: 1px;
+}
+/* line 73, ../../compass/src/_header.sass */
+#header .search label {
+  display: none;
+}
+/* line 76, ../../compass/src/_header.sass */
+#header .avatar {
+  float: right;
+  width: 15%;
+  background-color: #919191;
+  border-radius: 0px 0px 10px 10px;
+  margin-right: 6px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+}
+/* line 86, ../../compass/src/_header.sass */
+#header .avatar a {
+  text-align: right;
+  text-decoration: none;
+  color: #feffff;
+}
+/* line 90, ../../compass/src/_header.sass */
+#header .avatar form {
+  display: none;
+}
 
-#container {
-  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5);
+/* line 1, ../../compass/src/_page.sass */
+#page {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: -10px;
-  padding: 35px 18px 18px;
   width: 70%;
-  height: 100%;
-  background-color: #d7f1c6; }
-  #container .general-activity {
-    float: right;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #427223;
-    padding: 4px;
-    margin: 2px; }
-  #container .screenshot {
-    background-color: #b6bfb0;
-    border-color: #427223;
-    border-width: 2px;
-    border-style: solid solid none;
-    float: right;
-    padding: 4px;
-    padding-bottom: 20px;
-    width: 30%; }
-    #container .screenshot img {
-      width: 100%; }
-  #container .description {
-    float: left;
-    margin: 10px;
-    width: 60%; }
-  #container .last_updates {
-    background-color: #b6bfb0;
-    border-color: #427223;
-    border-width: 2px;
-    border-style: none solid none;
-    float: right;
-    padding: 4px;
-    width: 30%;
-    clear: right; }
-    #container .last_updates .date {
-      display: inline; }
-  #container .urls {
-    background-color: #b6bfb0;
-    border-color: #427223;
-    border-width: 2px;
-    border-style: none solid none;
-    float: right;
-    padding: 4px;
-    width: 30%;
-    clear: right; }
-    #container .urls a {
-      font-size: 12px; }
-  #container .doIt {
-    background: none repeat scroll 0 0 #cccccc;
-    float: left;
-    font-family: monospace;
-    font-size: 110%;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 15px;
-    width: 40%;
-    -moz-border-radius: 4px;
-    border: 1px solid #b6bfb0;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); }
-  #container .license {
-    background-color: #b6bfb0;
-    border-color: #427223;
-    border-width: 2px;
-    border-style: none solid solid;
-    float: right;
-    padding: 4px;
-    width: 30%;
-    -moz-border-radius-bottomleft: 8px;
-    -moz-border-radius-bottomright: 8px;
-    clear: right; }
-  #container form label {
-    float: left;
-    clear: both; }
-    #container form label a {
-      font-size: small;
-      color: #aaaaaa; }
-      #container form label a:hover {
-        color: #222222; }
-  #container form input, #container form textarea, #container form select {
-    float: right;
-    clear: right;
-    width: 60ex; }
+  -webkit-box-shadow: 0px 5px 60px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 5px 60px rgba(0, 0, 0, 0.5);
+  background-color: #eaeaea;
+  padding: 45px 18px 0px;
+  border-radius: 0px 0px 20px 20px;
+}
+/* line 11, ../../compass/src/_page.sass */
+#page #contentheader {
+  border-bottom: 1px none #919191;
+  text-align: right;
+  margin-top: -40px;
+  margin-left: 33%;
+  font-size: 10pt;
+  padding: 5px;
+  color: #919191;
+}
+/* line 20, ../../compass/src/_page.sass */
+#page #contentfooter {
+  margin-bottom: -1px;
+  border-top: 1px dashed #515151;
+  font-size: 10pt;
+  padding: 5px;
+  color: #515151;
+}
+/* line 27, ../../compass/src/_page.sass */
+#page #content {
+  min-height: 70%/min-height because of moz;
+}
+/* line 30, ../../compass/src/_page.sass */
+#page #content .projectlogobox {
+  float: left;
+  clear: left;
+  background-color: #eaeaea;
+  padding: 40px 20px 10px 0;
+  margin-right: 0;
+  margin-left: -18px;
+  margin-bottom: 0;
+}
+/* line 38, ../../compass/src/_page.sass */
+#page #content .projectlogobox .projectlogo {
+  background-color: #252525;
+  border-radius: 0px 20px 20px 0px;
+  padding: 10px;
+}
+/* line 42, ../../compass/src/_page.sass */
+#page #content .projectlogobox .projectlogo img {
+  border-radius: 0px 10px 10px 0px;
+  margin-left: -30px;
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 150px;
+  max-width: 150px;
+}
+/* line 50, ../../compass/src/_page.sass */
+#page #content .projectlink {
+  float: right;
+  clear: right;
+  margin-top: 55px;
+  color: black;
+  border: 1px solid #919191;
+  border-bottom: none;
+  border-right: none;
+  padding-left: 15px;
+  border-radius: 20px 0px 0px 0px;
+}
+/* line 61, ../../compass/src/_page.sass */
+#page #content .projectname {
+  padding-top: 50px;
+  font-size: 16pt;
+  border-bottom: 1px dotted #515151;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+/* line 68, ../../compass/src/_page.sass */
+#page #content .projecttitle {
+  display: inline;
+  color: #797979;
+  font-size: 16pt;
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0;
+}
+/* line 76, ../../compass/src/_page.sass */
+#page #content .infobox {
+  float: right;
+  clear: right;
+  width: 25%;
+  height: 250px;
+  border-left: 1px dotted #919191;
+  padding: 5px 0 5px 20px;
+  font-size: 10pt;
+  margin: 10px 0 10px 20px;
+}
+/* line 86, ../../compass/src/_page.sass */
+#page #content .infobox .info {
+  color: #515151;
+  padding-bottom: 5px;
+  text-align: right;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted #cacaca;
+}
+/* line 92, ../../compass/src/_page.sass */
+#page #content .infobox .info .infoline {
+  font-weight: bold;
+  float: left;
+  color: black;
+}
+/* line 97, ../../compass/src/_page.sass */
+#page #content .infobox .info .author {
+  display: inline-block;
+  font-size: 8pt;
+  min-width: 40%;
+  text-align: justify;
+}
+/* line 102, ../../compass/src/_page.sass */
+#page #content .infobox .info .license {
+  letter-spacing: 1px;
+}
+/* line 104, ../../compass/src/_page.sass */
+#page #content .infobox .info .repository {
+  font-size: 8pt;
+}
+/* line 107, ../../compass/src/_page.sass */
+#page #content .code {
+  padding: 15px;
+  border: 1px dotted #919191;
+  background-color: #feffff;
+  font: 10pt monospace;
+  border-right-style: none;
+  border-left-style: none;
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 32%;
+}
+/* line 119, ../../compass/src/_page.sass */
+#page #content .screenshots {
+  margin: 20px 20px 20px;
+}
+/* line 121, ../../compass/src/_page.sass */
+#page #content .screenshots .infoline {
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+/* line 125, ../../compass/src/_page.sass */
+#page #content .screenshots .pic {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #333333;
+  background-color: #333333;
+  -webkit-box-shadow: 0px 5px 5px rgba(51, 51, 51, 0.75);
+  margin: 2px 10px 2px 2px;
+  padding: 2px;
+}
+/* line 133, ../../compass/src/_page.sass */
+#page #content .screenshots .pic img {
+  border-radius: 3px;
+}
+/* line 136, ../../compass/src/_page.sass */
+#page #content .description {
+  margin: 10px;
+  padding-left: 10px;
+  color: #212121;
+  text-align: justify;
+}
