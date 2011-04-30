@@ -4,7 +4,9 @@
   Metacello.availableProjectsSearch = function(box) {
     $(box).autocomplete({
       source: [],
-      minLength: 0
+      minLength: 0,
+      delay: 0,
+      position: { my : "right top", at: "right bottom" }
     });
     $.getJSON("/projects/names", function(data) {
       return $(box).autocomplete("option", "source", data);

@@ -3,9 +3,9 @@
     %title Metacello Community Page
     %meta{:charset => "utf-8"}/
     %meta{:"http-equiv" => "X-UA-Compatible", :content => "chrome=1"}/
-    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-1.4.4.min.js"}
-    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-ui-1.8.9.custom.min.js"}
-    %link{:href =>"/stylesheets/jquery/jquery-ui-1.8.9.custom.css", :media =>"screen", :rel => "stylesheet", :type => "text/css"}/
+    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-1.5.1.min.js"}
+    %script{:type => "text/javascript", :src =>"/javascript/jquery/jquery-ui-1.8.12.custom.min.js"}
+    %link{:href =>"/stylesheets/jquery/jquery-ui-1.8.12.custom.css", :media =>"screen", :rel => "stylesheet", :type => "text/css"}/
 
     %script{:type => "text/javascript", :src =>"/javascript/pretty.js"}
 
@@ -30,7 +30,7 @@
           %label{:for => "search"} Search:
           %input{:name => "search", :id => "search-box"}
         %div{:id => "available-projects"}
-      .avatar
+      .login
         -if User.current_user?
           %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
           %a{:href => "#", :id => "account-edit"} Account
@@ -47,11 +47,11 @@
           Your Smalltalk project library
 
     #page
-      #contentheader
+      #pageheader
         Who it Works | Contact | FAQ's | Help
       #content
         = yield
-      #contentfooter
+      #pagefooter
         .copyright
           &copy; Copyrights
         .footerlinks
