@@ -1,28 +1,53 @@
 #page
   width: $page-space
   margin: 0 auto 0 auto 
-  padding: 45px 18px 0px
+  padding: 5px 18px 0px
   background-color: $page-color
-  +box-shadow(0px, 5px, 60px, 0px, $shadow-color )
   +border-bottom-radius($page-round)
+  +single-box-shadow($shadow-color, 0px, 5px, 30px, 0px)
   
-  #pageheader
-    border-bottom: 1px solid #cacaca
-    text-align: right
-    margin: -40px 0 10px 0
+  .menu
+    list-style-type: none
+    margin: 0
+    padding: 0
     font-size: 10pt
-    padding: 10px 0px 5px26%
-    color: #919191
     
-  #pagefooter
-    margin-bottom: -1px
-    border-top: 1px dashed #515151
-    font-size: 10pt
-    padding: 5px
-    color: #515151
+    & > .item:first-child
+      border-left: none
     
-    .copyright
-      float:  right
+    & > .item:last-child
+      border-right: none
+    
+    .item
+      display: inline-block
+      margin: 0px
+      padding-right: 10px
+      padding-left: 10px
+      color: #888
+      border-right: 1px solid #999
+      border-left: 1px solid #fff
+      text-shadow: 1px 1px 0px #fff
 
-  #content  
-    min-height: 60%     // min-height because of moz
+      &:hover
+        color: #59c
+  
+#pageheader
+  border-bottom: 1px none #cacaca
+  text-align: right
+  margin: 0px 0 10px 0
+  font-size: 10pt
+  padding: 10px 0px 5px 30%
+  
+#pagefooter
+  border-top: 1px solid #999
+  +single-box-shadow(#fff, 0px, 1px, 0px, 0px, inset)
+  padding: 5px 0px 7px 0px
+    
+  .copyright
+    float:  right
+    color: #888
+    font-size: 10pt
+    text-shadow: 1px 1px 0px #fff
+
+#content  
+  min-height: 60%     // min-height because of moz

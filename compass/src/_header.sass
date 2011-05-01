@@ -41,7 +41,7 @@
       font-size: $logo-subtitle-size
       
   .search
-    width: 25%
+    width: 30%
     float: left
     display: inline-block
     position: absolute
@@ -51,16 +51,22 @@
     background-color: $search-box-color //fallback
     +linear-gradient(color-stops($search-box-color-top, $search-box-color-bottom), top)    
     +border-bottom-radius($header-round)
-    +single-box-shadow(rgba(10, 10, 10, 0.3), -4px, 10px, 4px, 0px)
+    +single-box-shadow(rgba(10, 10, 10, 0.2), -4px, 12px, 6px, -2px)
 
     form
       margin: 0
     input
       width:  100%
       +border-radius(20px)
+      border-top-color: #919191
+      border-left-color: #919191
+      border-bottom-color: #ccc
+      border-right-color: #ccc
       padding: 5px 10px 3px 36px
-      background: #f4f4f4 url("") no-repeat scroll
+      background: #fff url("") no-repeat scroll
       font: 20px "Courier New", Courier, mono
+      +single-box-shadow(rgba(0, 0, 0, 0.2), 0px, 0px, 15px, 0px, inset)
+      
     #available-projects
       border: 1px
     label
@@ -85,10 +91,10 @@
       text-decoration: none
       color: #feffff
       
-      &:after
+      &:before
         display: inline-block
         content: ' '
-        margin-left: 10px
+        margin-right: 10px
         width: 10px
         height: 10px
         background-image: url('jquery/images/ui-icons_ffffff_256x240.png')

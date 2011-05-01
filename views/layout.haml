@@ -29,7 +29,7 @@
         %form
           %label{:for => "search"} Search:
           %input{:name => "search", :id => "search-box"}
-        %div{:id => "available-projects"}
+        #available-projects
       .login
         -if User.current_user?
           %img{:href => "http://www.gravatar.com", :src => gravatar(User.current_user.mail)}
@@ -40,19 +40,32 @@
           %a{:href => "#", :id => "login-signup"} Login / Signup
           .login_form= haml :"forms/login", :layout => false    
       .logo
-        .title
+        .title<>
           Metacello
-          .domain='.org'
+          .domain>='.org'
         .subtitle
           Your Smalltalk project library
 
     #page
       #pageheader
-        Who it Works | Contact | FAQ's | Help
+        .menu<>
+          .item<>
+            Who it Works
+          .item<>
+            Contact
+          .item<>
+            FAQ's
+          .item<>
+            Help
       #content
         = yield
       #pagefooter
         .copyright
           &copy; Copyrights
-        .footerlinks
-          AGB's | Impressum | Stuff nobody reads
+        .menu<>
+          .item<>
+            AGB's
+          .item<>
+            Impressum
+          .item<>
+            Stuff nobody reads
