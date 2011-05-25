@@ -298,19 +298,18 @@ body {
 #page .menu .item {
   display: inline-block;
   margin: 0px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 1px 10px 1px 10px;
   color: #888888;
   border-right: 1px solid #999999;
   border-left: 1px solid white;
   text-shadow: 1px 1px 0px white;
 }
-/* line 31, ../../compass/src/_page.sass */
+/* line 30, ../../compass/src/_page.sass */
 #page .menu .item:hover {
   color: #5599cc;
 }
 
-/* line 34, ../../compass/src/_page.sass */
+/* line 37, ../../compass/src/_page.sass */
 #pageheader {
   border-bottom: 1px none #cacaca;
   text-align: right;
@@ -319,7 +318,7 @@ body {
   padding: 10px 0px 5px 30%;
 }
 
-/* line 41, ../../compass/src/_page.sass */
+/* line 44, ../../compass/src/_page.sass */
 #pagefooter {
   border-top: 1px solid #999999;
   -moz-box-shadow: inset 0px 1px 0px 0px white;
@@ -328,7 +327,7 @@ body {
   box-shadow: inset 0px 1px 0px 0px white;
   padding: 5px 0px 7px 0px;
 }
-/* line 46, ../../compass/src/_page.sass */
+/* line 49, ../../compass/src/_page.sass */
 #pagefooter .copyright {
   float: right;
   color: #888888;
@@ -336,7 +335,7 @@ body {
   text-shadow: 1px 1px 0px white;
 }
 
-/* line 52, ../../compass/src/_page.sass */
+/* line 55, ../../compass/src/_page.sass */
 #content {
   min-height: 60%;
 }
@@ -392,7 +391,7 @@ body {
   color: #252525;
   letter-spacing: 2px;
   font-weight: bold;
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 1px 1px 0px white;
 }
 /* line 43, ../../compass/src/_project.sass */
 .projectname .projecttitle {
@@ -411,69 +410,156 @@ body {
   clear: right;
   width: 25%;
   height: 250px;
-  border-left: 1px solid #cccccc;
+  border-left: 1px solid #bbbbbb;
   -moz-box-shadow: inset 1px 0px 0px 0px white;
   -webkit-box-shadow: inset 1px 0px 0px 0px white;
   -o-box-shadow: inset 1px 0px 0px 0px white;
   box-shadow: inset 1px 0px 0px 0px white;
-  padding: 5px 0 5px 20px;
+  padding: 10px 0 20px 20px;
   font-size: 10pt;
   margin: 10px 0 10px 20px;
 }
 /* line 63, ../../compass/src/_project.sass */
-.infobox .info {
-  color: #515151;
-  padding-bottom: 5px;
-  text-align: right;
-  margin-bottom: 5px;
-  border-bottom: 1px dotted #cacaca;
+.infobox > .info:last-child {
+  border-bottom: none;
+  -moz-box-shadow: inset 0px 0px 0px 0px #dddddd;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #dddddd;
+  -o-box-shadow: inset 0px 0px 0px 0px #dddddd;
+  box-shadow: inset 0px 0px 0px 0px #dddddd;
 }
-/* line 69, ../../compass/src/_project.sass */
+/* line 67, ../../compass/src/_project.sass */
+.infobox .info {
+  color: #888888;
+  text-shadow: 1px 1px 0px white;
+  text-align: right;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+  -moz-box-shadow: inset 0px -1px 0px 0px #dddddd;
+  -webkit-box-shadow: inset 0px -1px 0px 0px #dddddd;
+  -o-box-shadow: inset 0px -1px 0px 0px #dddddd;
+  box-shadow: inset 0px -1px 0px 0px #dddddd;
+}
+/* line 76, ../../compass/src/_project.sass */
 .infobox .info .infoline {
   font-weight: bold;
   float: left;
-  color: black;
+  color: #444444;
 }
-/* line 74, ../../compass/src/_project.sass */
+/* line 81, ../../compass/src/_project.sass */
+.infobox .info .date:hover {
+  color: #5599cc;
+}
+/* line 83, ../../compass/src/_project.sass */
 .infobox .info .author {
   display: inline-block;
   font-size: 8pt;
   min-width: 40%;
   text-align: justify;
 }
-/* line 79, ../../compass/src/_project.sass */
+/* line 88, ../../compass/src/_project.sass */
+.infobox .info .author:hover {
+  color: #5599cc;
+}
+/* line 90, ../../compass/src/_project.sass */
 .infobox .info .license {
   letter-spacing: 1px;
 }
-/* line 81, ../../compass/src/_project.sass */
+/* line 92, ../../compass/src/_project.sass */
+.infobox .info .license:hover {
+  color: #5599cc;
+}
+/* line 95, ../../compass/src/_project.sass */
+.infobox .info .dependence:hover {
+  color: #5599cc;
+}
+/* line 97, ../../compass/src/_project.sass */
 .infobox .info .repository {
   font-size: 8pt;
 }
+/* line 99, ../../compass/src/_project.sass */
+.infobox .info .repository:hover {
+  color: #5599cc;
+}
 
-/* line 84, ../../compass/src/_project.sass */
-.code {
-  padding: 15px;
-  border: 1px dotted #919191;
-  background-color: #feffff;
-  font: 10pt monospace;
-  border-right-style: none;
-  border-left-style: none;
+/* line 103, ../../compass/src/_project.sass */
+.codeview {
   margin-top: 40px;
   margin-left: 20px;
   margin-right: 32%;
 }
+/* line 107, ../../compass/src/_project.sass */
+.codeview .codeurl {
+  display: inline-block;
+  background-color: #fafafa;
+  padding: 2px 10px 2px 10px;
+  max-height: 20px;
+  border-bottom: 1px solid #eeeeee;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -ms-border-top-left-radius: 5px;
+  -khtml-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  -ms-border-top-right-radius: 5px;
+  -khtml-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -o-border-bottom-right-radius: 5px;
+  -ms-border-bottom-right-radius: 5px;
+  -khtml-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  -webkit-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  -o-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  margin-bottom: -10px;
+}
+/* line 118, ../../compass/src/_project.sass */
+.codeview .code {
+  padding: 15px;
+  border: 1px none #919191;
+  background-color: #fafafa;
+  font: 10pt monospace;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -o-border-bottom-left-radius: 3px;
+  -ms-border-bottom-left-radius: 3px;
+  -khtml-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -o-border-bottom-right-radius: 3px;
+  -ms-border-bottom-right-radius: 3px;
+  -khtml-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -o-border-top-right-radius: 3px;
+  -ms-border-top-right-radius: 3px;
+  -khtml-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  -webkit-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  -o-box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+  box-shadow: #cccccc -1px -1px 0px 0px, white 1px 1px 0px 0px;
+}
 
-/* line 96, ../../compass/src/_project.sass */
+/* line 128, ../../compass/src/_project.sass */
 .screenshots {
   margin: 20px 20px 20px;
 }
-/* line 98, ../../compass/src/_project.sass */
+/* line 130, ../../compass/src/_project.sass */
 .screenshots .infoline {
   font-weight: bold;
   color: black;
   margin-bottom: 10px;
 }
-/* line 102, ../../compass/src/_project.sass */
+/* line 134, ../../compass/src/_project.sass */
 .screenshots .pic {
   display: inline-block;
   border-radius: 5px;
@@ -483,12 +569,12 @@ body {
   margin: 2px 10px 2px 2px;
   padding: 2px;
 }
-/* line 110, ../../compass/src/_project.sass */
+/* line 142, ../../compass/src/_project.sass */
 .screenshots .pic img {
   border-radius: 3px;
 }
 
-/* line 113, ../../compass/src/_project.sass */
+/* line 145, ../../compass/src/_project.sass */
 .description {
   margin: 10px;
   padding-left: 10px;

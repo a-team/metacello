@@ -1,7 +1,7 @@
 Metacello = {}
 
 Metacello.availableProjectsSearch = (box) ->
-  $(box).autocomplete({ source: [], minLength: 0 })
+  $(box).autocomplete({ source: [], minLength: 0, delay: 0, position: { my : "right top", at: "right bottom" } })
   $.getJSON("/projects/names", (data) ->
     $(box).autocomplete("option", "source", data))
   $(box).keypress (event) ->

@@ -22,7 +22,7 @@
       .infoline= 'License :'
       .license= h(project.license)
     .info
-      .infoline= 'Team :'
+      .infoline= 'Developers :'
       //dummy
       //Team:
       //- project.team[0...3].each_with_index do |u, idx|
@@ -45,7 +45,11 @@
     
   .description= markdown(h(project.description))
   
-  .code= h(project.doIt)
+  .codeview
+    .codeurl
+      http://metacello.org/deli.st
+    .code
+      = h(project.doIt)
   
   .screenshots
     .infoline= 'Screenshots :'
