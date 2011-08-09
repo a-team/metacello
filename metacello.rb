@@ -11,8 +11,6 @@ require 'digest/md5'
 require 'project'
 require 'user'
 
-RDiscount = Maruku
-
 enable :sessions
 use Rack::Flash
 use Authentication::Token

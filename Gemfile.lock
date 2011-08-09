@@ -14,15 +14,13 @@ GEM
     compass (0.10.6)
       haml (>= 3.0.4)
     haml (3.0.25)
-    maruku (0.6.0)
-      syntax (>= 1.0.0)
     rack (1.2.1)
     rack-flash (0.1.1)
       rack
+    rdiscount (1.6.8)
     sinatra (1.1.2)
       rack (~> 1.1)
       tilt (~> 1.2)
-    syntax (1.0.0)
     tilt (1.2.2)
 
 PLATFORMS
@@ -34,6 +32,6 @@ DEPENDENCIES
   compass
   haml
   json!
-  maruku
   rack-flash
+  rdiscount
   sinatra
