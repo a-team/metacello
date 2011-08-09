@@ -1,12 +1,7 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift(File.expand_path("../lib", __FILE__))
- require 'sinatra'
-require 'maruku'
-require 'haml'
-require 'coffee-script'
-require 'compass'
-require 'json'
-require 'rack-flash'
+require 'bundler/setup'
+Bundler.require
 require 'digest/md5'
 require 'project'
 require 'user'
