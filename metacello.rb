@@ -10,6 +10,9 @@ enable :sessions
 use Rack::Flash
 use Authentication::Token
 
+set :views, File.expand_path("../views", __FILE__)
+set :public, File.expand_path("../public", __FILE__)
+
 helpers do
   def gravatar(mail)
     mail ||= "jondoe@example.com"
