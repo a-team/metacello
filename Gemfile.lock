@@ -1,20 +1,19 @@
 GIT
-  remote: git://github.com/timfel/bcrypt-ruby.git
-  revision: beed20cf2fd8bee2410c403a06cffee856bb9f56
-  branch: fixed-gemspec
+  remote: https://github.com/MagLev/json.git
+  revision: b49f3ff1372fc9a943c50999f55597ebf94fc3cc
   specs:
-    bcrypt-ruby (2.1.4)
+    json (1.5.4)
 
 GEM
   remote: http://rubygems.org/
   specs:
+    bcrypt-ruby (2.1.4)
     coffee-script (2.1.1)
       coffee-script-source
     coffee-script-source (1.0.0)
     compass (0.10.6)
       haml (>= 3.0.4)
     haml (3.0.25)
-    json_pure (1.5.1)
     maruku (0.6.0)
       syntax (>= 1.0.0)
     rack (1.2.1)
@@ -30,11 +29,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby!
+  bcrypt-ruby
   coffee-script
   compass
   haml
-  json_pure
+  json!
   maruku
   rack-flash
   sinatra

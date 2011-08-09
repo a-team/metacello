@@ -5,11 +5,9 @@ gem "haml"
 gem "compass"
 gem "coffee-script"
 gem "maruku"
+gem "bcrypt-ruby"
 if RUBY_ENGINE =~ /maglev/
-  gem "json_pure"
-  gem "bcrypt-ruby", :git => "git://github.com/timfel/bcrypt-ruby.git", :branch => "fixed-gemspec"
+  gem "json", :git => "https://github.com/MagLev/json.git"
 else
   gem "json"
-  gem "bcrypt-ruby"
 end
-
